@@ -18,14 +18,31 @@ class Event extends React.Component {
     }
 
     volunteerClickHandler=(obj)=>{
-        console.log(obj)
-        console.log("clicked")
-        let newArray=[]
-        newArray.push(obj)
-        this.setState({myEvents:newArray})
+        console.log(obj.event.id)
+        // console.log("clicked")
+        // let newArray=[]
+        // newArray.push(obj)
+        // this.setState({myEvents:newArray})
 
+        // let user_id = this.state.user.id
+         let event_id = obj.event.id
+         let options = {
+             method: "POST",
+             headers: {
+                 'Content-Type': 'application/json',
+                 'Accept': 'application/json'
+                 //, Authorization: `Bearer ${this.state.token}`
+             },
+             body: JSON.stringify({user_id: 17, event_id: event_id, rating:null})
+            }
+         
+         fetch("http://localhost:3000/attendances", options)
+             .then(res => res.json())
+             .then(console.log ) 
         
     }
+
+
 
     render() {
         
