@@ -1,13 +1,14 @@
 import React from 'react'
 import AllEventContainer from './AllEventContainer'
-import MyEvents from './MyEvents'
+import MyEventsContainer from './MyEventsContainer'
 import { Route } from 'react-router-dom'
 
  
 class Event extends React.Component {
 
     state={
-        allEvents:[]
+        allEvents:[],
+        myEvents:[]
     }
 
     componentDidMount = () => {
@@ -16,16 +17,29 @@ class Event extends React.Component {
             .then(data=> this.setState({allEvents:data}))
     }
 
+    volunteerClickHandler=(obj)=>{
+        console.log(obj)
+        console.log("clicked")
+        let newArray=[]
+        newArray.push(obj)
+        this.setState({myEvents:newArray})
+
+        
+    }
+
     render() {
         
     return (
         <>
         <Route exact path="/" render={ () =>
-            <AllEventContainer allEvents={this.state.allEvents}/>
+            <AllEventContainer allEvents={this.state.allEvents}
+            volunteerClickHandler={this.volunteerClickHandler}
+            />
         }/>  
 
         <Route path="/myevents" render={ () =>
-            <MyEvents />
+            <MyEventsContainer myEvents={this.state.myEvents}
+            />
         }/>  
         </>
     )

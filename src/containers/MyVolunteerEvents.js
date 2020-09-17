@@ -2,14 +2,15 @@ import React from 'react'
 import EventCard from '../components/EventCard'
 
  
-class AllEventContainer extends React.Component {
+class MyVolunteerEvents extends React.Component {
 
     renderAllEvents=()=>{
-       return this.props.allEvents.map ((event)=> 
+       return this.props.myEvents.map ((event)=> 
        <EventCard event={event}
        volunteerClickHandler={this.props.volunteerClickHandler}
        />)
     }
+
 
 
     render() {
@@ -21,5 +22,5 @@ class AllEventContainer extends React.Component {
     )
   }
 }
- 
-export default AllEventContainer;
+
+export default MyVolunteerEvents
