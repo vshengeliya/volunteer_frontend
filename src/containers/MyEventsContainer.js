@@ -4,16 +4,25 @@ import MyVolunteerEvents from './MyVolunteerEvents'
  
 class MyEventsContainer extends React.Component {
 
-  
-    render() {
+  state = {
+    myVolunteerEvents: []
+  }
 
-        
+  componentDidMount = () => {
+    fetch("http://localhost:3000/api/v1/users")
+        .then(resp => resp.json())
+        //change user when have a auth!!!
+        .then(data=> this.setState({myVolunteerEvents:data[0].my_attendances}))
+}
+    render() {
+      
     return (
       <>
         <h2>My eventsContainer</h2>
         {/* <MyCreatedEvents/> */}
         <MyVolunteerEvents
-        myEvents={this.props.myEvents} />
+        myVolunteerEvents={this.state.myVolunteerEvents}
+        />
         {/* <UserContainer/> */}
       
      </>
