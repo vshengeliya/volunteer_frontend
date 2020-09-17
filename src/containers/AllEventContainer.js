@@ -8,10 +8,8 @@ class AllEventContainer extends React.Component {
        return this.props.allEvents.map ((event)=> 
        <EventCard event={event}
        volunteerClickHandler={this.props.volunteerClickHandler}
-    
        />)
     }
-
 
     render() {
         

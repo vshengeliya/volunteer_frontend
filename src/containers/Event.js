@@ -8,7 +8,10 @@ class Event extends React.Component {
 
     state={
         allEvents:[],
+        volunteerEvents: [],
+        attendances:[],
         buttonToggle:null
+        
     }
 
     componentDidMount = () => {
@@ -17,29 +20,82 @@ class Event extends React.Component {
             .then(data=> this.setState({allEvents:data}))
     }
 
+    fetchUser=()=>{
+        fetch("http://localhost:3000/api/v1/users")
+        .then(resp => resp.json())
+         //change user when have a auth!!!
+         .then(data=> this.setState({volunteerEvents:data[0].my_attendances}))
+    }
+    
     volunteerClickHandler=(obj)=>{
-        console.log(obj.event.id)
-  
-         let event_id = obj.event.id
-         let options = {
-             method: "POST",
-             headers: {
-                 'Content-Type': 'application/json',
-                 'Accept': 'application/json'
-                 //, Authorization: `Bearer ${this.state.token}`
-             },
-             //change user when have a auth!!!
-             body: JSON.stringify({user_id: 17, event_id: event_id, rating:null})
-            }
-         
-         fetch("http://localhost:3000/attendances", options)           
+          
+          this.fetchUser()
+        //change user when have a auth!!!
         
+        if (this.state.volunteerEvents.find((event)=> event.id===obj.event.id)){
+            console.log(this.state.volunteerEvents)
+           return null
+        } 
+        else{
+
+            let event_id = obj.event.id
+            let options = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                    //, Authorization: `Bearer ${this.state.token}`
+                },
+                //change user when have a auth!!!
+                body: JSON.stringify({user_id: 23, event_id: event_id, rating:null}) //!!!!!!!!!!!change USER ID
+               }  
+            fetch("http://localhost:3000/attendances", options)
+        } 
     }
 
+    getAttendanceIdToDelete=()=>{
+
+    }
+
+    deleteEventClickHandler=(obj)=>{
+      console.log(obj.event.id)
+
+      fetch("http://localhost:3000/attendances")
+        .then(resp=> resp.json())
+        .then(data=>
+            {
+            this.setState({attendances:data})
+      
+          let thisEventInAttendances=this.state.attendances.filter(att=> att.event_id===obj.event.id)
+          console.log("thisEventInAttendances", thisEventInAttendances)
+          let attendanceIdArray = thisEventInAttendances.map((id)=>id.id)
+          console.log("attendanceIdArray", attendanceIdArray)
+          let attendanceId = attendanceIdArray[0]
+          console.log("attendanceId", attendanceId)
+         
+          fetch("http://localhost:3000/attendances/"+ attendanceId, {method: "DELETE"})
+          .then(resp=>resp.json())
+          .then(data=>{
+
+              fetch("http://localhost:3000/api/v1/users")
+                // .then(resp => resp.json())
+                //  //change user when have a auth!!!
+                //  .then(data=> this.setState({volunteerEvents:data[0].my_attendances}))
+          
+                })
+          })
+   
+        }
+
+    
+
     render() {
+
+        // console.log(this.state.allEvents)
         
     return (
         <>
+            {this.fetchUser}
         <Route exact path="/" render={ () =>
             <AllEventContainer allEvents={this.state.allEvents}
             volunteerClickHandler={this.volunteerClickHandler}
@@ -49,6 +105,7 @@ class Event extends React.Component {
 
         <Route path="/myevents" render={ () =>
             <MyEventsContainer
+            deleteEventClickHandler={this.deleteEventClickHandler}
               />
         }/>  
         </>

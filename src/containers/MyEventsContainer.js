@@ -22,6 +22,7 @@ class MyEventsContainer extends React.Component {
         {/* <MyCreatedEvents/> */}
         <MyVolunteerEvents
         myVolunteerEvents={this.state.myVolunteerEvents}
+        deleteEventClickHandler={this.props.deleteEventClickHandler}
         />
         {/* <UserContainer/> */}
       

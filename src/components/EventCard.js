@@ -3,8 +3,6 @@ import { Card, Icon, Image, Grid , Button} from 'semantic-ui-react'
 
 function EventCard(props) {
 
-  console.log(props)
-  
   return (
     <div>
         <Grid >
@@ -37,6 +35,7 @@ function EventCard(props) {
              <Button primary onClick={()=>props.volunteerClickHandler(props)}>
                Volunteer
              </Button>
+             <Button negative onClick={()=>props.deleteEventClickHandler(props)}>Delete event</Button>
            </Card.Content>
        </Card>
 
