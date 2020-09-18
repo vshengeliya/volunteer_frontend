@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Button, Checkbox, Dropdown, Form, Select} from 'semantic-ui-react'
 
 class CreateEventForm extends React.Component{
 
@@ -14,6 +14,7 @@ class CreateEventForm extends React.Component{
         city: "",
         state: ""
     }
+
 
     changeHandler=(e)=>{
         this.setState({[e.target.name]: e.target.value})
@@ -39,6 +40,7 @@ class CreateEventForm extends React.Component{
               </Form.Field>
 
               <Form.Field width={4}>
+                   
                 <label>Event Type</label>
                 <input placeholder='type, exp. performance, cooking, assembling' name='eventType' value={this.state.eventType} onChange={this.changeHandler}/>
               </Form.Field>

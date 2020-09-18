@@ -1,5 +1,5 @@
 import React from 'react'
-import EventCard from '../components/EventCard'
+import EventCardD from '../components/EventCardD'
 
  
 class MyVolunteerEvents extends React.Component {
@@ -38,7 +38,7 @@ class MyVolunteerEvents extends React.Component {
 
     renderAllEvents=()=>{
        return this.state.myVolunteerEvents.map ((event)=> 
-       <EventCard event={event}
+       <EventCardD event={event}
        deleteEventClickHandler={this.deleteEventClickHandler}
        />)
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Icon, Image, Grid , Button} from 'semantic-ui-react'
 
-function EventCard(props) {
+function EventCardD(props) {
 
   return (
     <div>
@@ -32,10 +32,7 @@ function EventCard(props) {
              </a>
            </Card.Content>
            <Card.Content extra>
-             <Button primary onClick={()=>props.volunteerClickHandler(props)}>
-               Volunteer
-             </Button>
-             {/* <Button negative onClick={()=>props.deleteEventClickHandler(props)}>Delete event</Button> */}
+             <Button negative onClick={()=>props.deleteEventClickHandler(props)}>Delete event</Button>
            </Card.Content>
        </Card>
 
@@ -47,4 +44,4 @@ function EventCard(props) {
   );
 }
 
-export default EventCard;
+export default EventCardD;

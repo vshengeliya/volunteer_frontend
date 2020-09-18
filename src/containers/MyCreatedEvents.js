@@ -2,6 +2,7 @@ import React from 'react'
 import EventCard from '../components/EventCard'
 import { Button } from 'semantic-ui-react'
 import CreateEventForm from '../components/CreateEventForm'
+import EventCardD from '../components/EventCardD'
 
  
 class MyCreatedEvents extends React.Component {
@@ -20,14 +21,23 @@ class MyCreatedEvents extends React.Component {
         
     renderMyEvents=()=>{
         return this.state.myCreatedEvents.map ((event)=> 
-        <EventCard event={event}
+        <EventCardD event={event}
+        deleteEventClickHandler={this.deleteEventClickHandler}
         //    volunteerClickHandler={this.props.volunteerClickHandler}
         />)
     }
         
     createEventHandler=()=>{
         this.setState({formToggle:true})
-    
+    }
+
+    deleteEventClickHandler =(obj)=>{
+        
+        let id = obj.event.id
+        let newArray = this.state.myCreatedEvents.filter((event => event.id !== obj.event.id))
+        this.setState({myCreatedEvents:newArray})
+
+        fetch("http://localhost:3000/events/"+ id, {method: "DELETE"})
     }
 
     submitFormHandler=(obj)=>{
