@@ -4,12 +4,42 @@ import EventCard from '../components/EventCard'
  
 class MyVolunteerEvents extends React.Component {
 
-    renderAllEvents=()=>{
-       return this.props.myVolunteerEvents.map ((event)=> 
-       <EventCard event={event}
-       deleteEventClickHandler={this.props.deleteEventClickHandler}
+   state = {
+      myVolunteerEvents: [],
+      attendances:[]
+    }
+   
+    componentDidMount = () => {
+      fetch("http://localhost:3000/api/v1/users")
+      .then(resp => resp.json())
+      //change user when have a auth!!!
+      .then(data=> this.setState({myVolunteerEvents:data[0].my_attendances}))
+    }
+    
+    deleteEventClickHandler=(obj)=>{
+      
+      let  newArray = this.state.myVolunteerEvents.filter((event => event.id !== obj.event.id))
+      
+      this.setState({myVolunteerEvents:newArray})
+      fetch("http://localhost:3000/attendances")
+      .then(resp=> resp.json())
+      .then(data=>
+            {
+               this.setState({attendances:data})
+               let thisEventInAttendances=this.state.attendances.filter(att=> att.event_id===obj.event.id) 
+               let attendanceIdArray = thisEventInAttendances.map((id)=>id.id)
+               let attendanceId = attendanceIdArray[0]
 
-    //    volunteerClickHandler={this.props.volunteerClickHandler}
+               fetch("http://localhost:3000/attendances/"+ attendanceId, {method: "DELETE"})
+               .then(resp=>resp.json())
+               .then(data=>{ fetch("http://localhost:3000/api/v1/users")})
+            })
+         }
+
+    renderAllEvents=()=>{
+       return this.state.myVolunteerEvents.map ((event)=> 
+       <EventCard event={event}
+       deleteEventClickHandler={this.deleteEventClickHandler}
        />)
     }
 
