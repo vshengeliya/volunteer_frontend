@@ -9,7 +9,7 @@ class Event extends React.Component {
     state={
         allEvents:[],
         volunteerEvents: [],
-        attendances:[],
+        
         buttonToggle:null
         
     }
@@ -53,39 +53,6 @@ class Event extends React.Component {
         } 
     }
 
-    getAttendanceIdToDelete=()=>{
-
-    }
-
-    deleteEventClickHandler=(obj)=>{
-      console.log(obj.event.id)
-
-      fetch("http://localhost:3000/attendances")
-        .then(resp=> resp.json())
-        .then(data=>
-            {
-            this.setState({attendances:data})
-      
-          let thisEventInAttendances=this.state.attendances.filter(att=> att.event_id===obj.event.id)
-          console.log("thisEventInAttendances", thisEventInAttendances)
-          let attendanceIdArray = thisEventInAttendances.map((id)=>id.id)
-          console.log("attendanceIdArray", attendanceIdArray)
-          let attendanceId = attendanceIdArray[0]
-          console.log("attendanceId", attendanceId)
-         
-          fetch("http://localhost:3000/attendances/"+ attendanceId, {method: "DELETE"})
-          .then(resp=>resp.json())
-          .then(data=>{
-
-              fetch("http://localhost:3000/api/v1/users")
-                // .then(resp => resp.json())
-                //  //change user when have a auth!!!
-                //  .then(data=> this.setState({volunteerEvents:data[0].my_attendances}))
-          
-                })
-          })
-   
-        }
 
     
 
@@ -105,7 +72,6 @@ class Event extends React.Component {
 
         <Route path="/myevents" render={ () =>
             <MyEventsContainer
-            deleteEventClickHandler={this.deleteEventClickHandler}
               />
         }/>  
         </>
