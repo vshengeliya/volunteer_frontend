@@ -12,22 +12,23 @@ class MyEventsContainer extends React.Component {
 render() {
   // console.log(this.state.myVolunteerEvents)
     const panes =[
-      { menuItem:'Events where I volunteer', render: () => <Tab.Pane>
+      { menuItem:'Events I volunteer', render: () => <Tab.Pane>
         
          <MyVolunteerEvents
         />
       </Tab.Pane> },
-      { menuItem: 'Events I created', render: () => <Tab.Pane>
-        <MyCreatedEvents/>
+      { menuItem: 'My Created Events', render: () => <Tab.Pane>
+        <MyCreatedEvents
+        />
         </Tab.Pane> },
       { menuItem: 'Tab 3', render: () => <Tab.Pane>
-      <CreateEventForm/>
+      
       </Tab.Pane> },
     ]
       
     return (
       <>
-        <h2>My eventsContainer</h2>
+        <h2>My events Container</h2>
         <Tab panes={panes} />
         {/* <MyCreatedEvents/> */}
        
