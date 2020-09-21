@@ -16,7 +16,7 @@ class MyCreatedEvents extends React.Component {
         fetch("http://localhost:3000/api/v1/users")
         .then(resp => resp.json())
         //change user when have a auth!!!
-        .then(data=> this.setState({myCreatedEvents:data[0].events}))
+        .then(data=> this.setState({myCreatedEvents:data[1].events}))
     }
         
     renderMyEvents=()=>{

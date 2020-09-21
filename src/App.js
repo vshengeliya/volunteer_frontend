@@ -11,13 +11,8 @@ function App() {
   
   return (
     <div>
-
-   <Head/>
-   <Event/>
-
- 
-
-       
+    <Head/>
+    <Event/>  
     </div>
   );
 }

@@ -13,7 +13,7 @@ class MyVolunteerEvents extends React.Component {
       fetch("http://localhost:3000/api/v1/users")
       .then(resp => resp.json())
       //change user when have a auth!!!
-      .then(data=> this.setState({myVolunteerEvents:data[0].my_attendances}))
+      .then(data=> this.setState({myVolunteerEvents:data[1].my_attendances}))
     }
     
     deleteEventClickHandler=(obj)=>{
@@ -44,6 +44,8 @@ class MyVolunteerEvents extends React.Component {
     }
 
     render() {
+
+      console.log("my volunteer events", this.state.myVolunteerEvents)
         
     return (
         <>

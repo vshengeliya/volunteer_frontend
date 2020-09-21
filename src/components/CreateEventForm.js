@@ -83,7 +83,7 @@ class CreateEventForm extends React.Component{
                 onChange={this.changeHandler}
         /> */}
                 <label>Date of the Event</label>
-                <input placeholder='example `09-30-2020' name='date' value={this.state.date} onChange={this.changeHandler}/>
+                {/* <input placeholder='example `09-30-2020' name='date' value={this.state.date} onChange={this.changeHandler}/> */}
               </Form.Field>
 
               <Form.Field width={4}>

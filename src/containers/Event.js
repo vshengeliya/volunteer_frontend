@@ -98,6 +98,7 @@ class Event extends React.Component {
 
         <Route path="/myevents" render={ () =>
             <MyEventsContainer
+            volunteerEvents={this.state.volunteerEvents}
               />
         }/>  
         </>
