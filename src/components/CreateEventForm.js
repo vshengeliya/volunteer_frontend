@@ -1,5 +1,11 @@
 import React from 'react'
 import { Button, Checkbox, Dropdown, Form, Select} from 'semantic-ui-react'
+import {
+  DateInput,
+  TimeInput,
+  DateTimeInput,
+  DatesRangeInput
+} from 'semantic-ui-calendar-react';
 
 class CreateEventForm extends React.Component{
 
@@ -60,7 +66,22 @@ class CreateEventForm extends React.Component{
                 <input placeholder='describe the event'name='details' value={this.state.details} onChange={this.changeHandler}/>
               </Form.Field>
 
+              {/* <DateInput
+                name="date"
+                placeholder="Date"
+                value={this.state.date}
+                iconPosition="left"
+                onChange={this.changeHandler}
+        /> */}
+
               <Form.Field width={4}>
+                {/* <DateInput
+                name="date"
+                placeholder="Date"
+                value={this.state.date}
+                iconPosition="left"
+                onChange={this.changeHandler}
+        /> */}
                 <label>Date of the Event</label>
                 <input placeholder='example `09-30-2020' name='date' value={this.state.date} onChange={this.changeHandler}/>
               </Form.Field>
@@ -74,6 +95,12 @@ class CreateEventForm extends React.Component{
                 <label>  State</label>
                 <input placeholder='State' name='state' value={this.state.state} onChange={this.changeHandler}/>
               </Form.Field>
+
+              <Form>
+       
+        </Form>
+
+              
 
       <Button type='submit'>Submit</Button>
     </Form>

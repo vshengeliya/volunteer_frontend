@@ -8,9 +8,10 @@ class Event extends React.Component {
 
     state={
         allEvents:[],
+        allEvents:[],
         volunteerEvents: [],
-        
-        buttonToggle:null
+        buttonToggle:null,
+        searchValue:""
         
     }
 
@@ -53,19 +54,33 @@ class Event extends React.Component {
         } 
     }
 
+    searchHandler=(e)=>{
+        console.log(e.target.value)
+        this.setState({searchValue:e.target.value})
+    }
 
+    filteredEvents=()=>{
+
+        let newArray = this.state.allEvents.filter((event)=> event.name.toLowerCase().includes(this.state.searchValue.toLowerCase()))
+        return newArray
+        
+    }
     
-
     render() {
-
+        
         // console.log(this.state.allEvents)
         
+        // console.log(newArray)
     return (
         <>
             {this.fetchUser}
+        
         <Route exact path="/" render={ () =>
             <AllEventContainer allEvents={this.state.allEvents}
             volunteerClickHandler={this.volunteerClickHandler}
+            searchValue={this.state.searchValue}
+            searchHandler={this.searchHandler}
+            allEvents={this.filteredEvents()}
          
             />
         }/>  

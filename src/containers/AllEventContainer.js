@@ -1,5 +1,7 @@
 import React from 'react'
+
 import EventCard from '../components/EventCard'
+import SearchForm from '../components/SearchForm'
 
  
 class AllEventContainer extends React.Component {
@@ -15,6 +17,10 @@ class AllEventContainer extends React.Component {
         
     return (
         <>
+        <SearchForm searchValue={this.props.searchValue} 
+        searchHandler={this.props.searchHandler}
+        allEvents={this.props.allEvents}
+        />
      {this.renderAllEvents()}
      </>
     )
