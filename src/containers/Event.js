@@ -8,11 +8,10 @@ class Event extends React.Component {
 
     state={
         allEvents:[],
-        allEvents:[],
         volunteerEvents: [],
         buttonToggle:null,
-        searchValue:""
-        
+        searchNameValue:"",
+        searchCityValue:""
     }
 
     componentDidMount = () => {
@@ -54,23 +53,31 @@ class Event extends React.Component {
         } 
     }
 
-    searchHandler=(e)=>{
+    searchByNameHandler=(e)=>{
         console.log(e.target.value)
-        this.setState({searchValue:e.target.value})
+        this.setState({searchNameValue:e.target.value})
     }
 
-    filteredEvents=()=>{
+    searchByCityHandler=(e)=>{
+        console.log(e.target.value)
+        this.setState({searchCityValue:e.target.value})
+    }
 
-        let newArray = this.state.allEvents.filter((event)=> event.name.toLowerCase().includes(this.state.searchValue.toLowerCase()))
-        return newArray
-        
+    filteredByNameEvents=()=>{
+
+        let newArray = this.state.allEvents.filter((event)=> event.name.toLowerCase().includes(this.state.searchNameValue.toLowerCase()))
+        return newArray  
+    }
+
+
+    filteredByCityEvents=()=>{
+
+        let newArray = this.state.allEvents.filter((event)=> event.city.toLowerCase().includes(this.state.searchCityValue.toLowerCase()))
+        return newArray  
     }
     
     render() {
         
-        // console.log(this.state.allEvents)
-        
-        // console.log(newArray)
     return (
         <>
             {this.fetchUser}
@@ -78,9 +85,13 @@ class Event extends React.Component {
         <Route exact path="/" render={ () =>
             <AllEventContainer allEvents={this.state.allEvents}
             volunteerClickHandler={this.volunteerClickHandler}
-            searchValue={this.state.searchValue}
-            searchHandler={this.searchHandler}
-            allEvents={this.filteredEvents()}
+            searchNameValue={this.state.searchNameValue}
+            searchCityValue={this.state.searchCityValue}
+            searchByNameHandler={this.searchByNameHandler}
+            searchByCityHandler={this.searchByCityHandler}
+            filteredByNameEvents={this.filteredByNameEvents()}
+            filteredByCityEvents={this.filteredByCityEvents()}
+            // allEvents={this.filteredByCityEvents()}
          
             />
         }/>  

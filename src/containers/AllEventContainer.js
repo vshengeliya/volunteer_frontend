@@ -7,18 +7,30 @@ import SearchForm from '../components/SearchForm'
 class AllEventContainer extends React.Component {
 
     renderAllEvents=()=>{
-       return this.props.allEvents.map ((event)=> 
-       <EventCard event={event}
-       volunteerClickHandler={this.props.volunteerClickHandler}
-       />)
+
+      if (this.props.searchNameValue === ""){
+
+         return this.props.filteredByCityEvents.map ((event)=> 
+         <EventCard event={event}
+         volunteerClickHandler={this.props.volunteerClickHandler}
+         />)
+      } else {
+         return this.props.filteredByNameEvents.map ((event)=> 
+         <EventCard event={event}
+         volunteerClickHandler={this.props.volunteerClickHandler}
+         />) 
+      }
     }
 
     render() {
         
     return (
         <>
-        <SearchForm searchValue={this.props.searchValue} 
-        searchHandler={this.props.searchHandler}
+        <SearchForm 
+        searchNameValue={this.props.searchNameValue} 
+        searchByNameHandler={this.props.searchByNameHandler}
+        searchCityValue={this.props.searchCityValue} 
+        searchByCityHandler={this.props.searchByCityHandler}
         allEvents={this.props.allEvents}
         />
      {this.renderAllEvents()}
