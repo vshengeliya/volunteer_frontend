@@ -1,12 +1,15 @@
 import React from 'react'
 import AllEventContainer from './AllEventContainer'
 import MyEventsContainer from './MyEventsContainer'
+import LoginContainer from './LoginContainer'
 import { Route } from 'react-router-dom'
 
  
 class Event extends React.Component {
 
     state={
+        user: {},
+        token: null,
         allEvents:[],
         volunteerEvents: [],
         buttonToggle:null,
@@ -14,10 +17,41 @@ class Event extends React.Component {
         searchCityValue:""
     }
 
+    setUserState = (data) => {
+        if (data === "logout") {
+            this.setState({
+                user: {},
+                token: null,
+                allEvents:[]
+            })
+        } else {
+            console.log("Set user state", data)
+            this.setState({
+
+                user: data.user,
+                token: data.jwt,
+            })
+        }
+    }
+
     componentDidMount = () => {
         fetch("http://localhost:3000/events/")
             .then(resp => resp.json())
             .then(data=> this.setState({allEvents:data}))
+        const token = localStorage.getItem('token')
+        if (token){
+            fetch("http://localhost:3000/api/v1/profile", {
+                method: "GET",
+                headers: { Authorization: `Bearer ${token}`},
+            })
+                .then(res => res.json())
+                .then(data => {
+                    this.setState({
+                        user: data.user,
+                        token: token})
+                })
+
+        }
     }
 
     fetchUser=()=>{
@@ -91,14 +125,16 @@ class Event extends React.Component {
             searchByCityHandler={this.searchByCityHandler}
             filteredByNameEvents={this.filteredByNameEvents()}
             filteredByCityEvents={this.filteredByCityEvents()}
-            // allEvents={this.filteredByCityEvents()}
+            allEvents={this.filteredByCityEvents()}
          
             />
         }/>  
+        <Route path="/login" render={ () => <LoginContainer user={this.state.user} token={this.state.token} setUserState={this.setUserState}/> } />
 
         <Route path="/myevents" render={ () =>
             <MyEventsContainer
             volunteerEvents={this.state.volunteerEvents}
+            user={this.state.user} token={this.state.token}
               />
         }/>  
         </>

@@ -10,10 +10,15 @@ class MyVolunteerEvents extends React.Component {
     }
    
     componentDidMount = () => {
-      fetch("http://localhost:3000/api/v1/users")
+      // fetch("http://localhost:3000/api/v1/users")
+      fetch("http://localhost:3000/api/v1/users", {
+                method: "GET",
+                headers: { Authorization: `Bearer ${this.props.token}`},
+            })
       .then(resp => resp.json())
       //change user when have a auth!!!
-      .then(data=> this.setState({myVolunteerEvents:data[1].my_attendances}))
+      .then(console.log)
+      // .then(data=> this.setState({myVolunteerEvents:data[1].my_attendances}))
     }
     
     deleteEventClickHandler=(obj)=>{

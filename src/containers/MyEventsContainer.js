@@ -15,9 +15,15 @@ class MyEventsContainer extends React.Component {
     }
 
     componentDidMount(){
-      fetch("http://localhost:3000/api/v1/users")
-      .then(resp=> resp.json())
-      .then(data=> this.setState({myUser:data[1]}))///change USER ID
+      fetch("http://localhost:3000/api/v1/users" , {
+        method: "GET",
+        headers: { Authorization: `Bearer ${this.props.token}`},
+    })
+    .then(resp => resp.json())
+//change user when have a auth!!!
+    .then(console.log)
+   
+      // .then(data=> this.setState({myUser:data}))///change USER ID
     }
 
     userHandler=(obj)=>{
@@ -56,7 +62,7 @@ class MyEventsContainer extends React.Component {
           headers: {
               'Content-Type': 'application/json',
               'Accept': 'application/json'
-              //, Authorization: `Bearer ${this.state.token}`
+              // , Authorization: `Bearer ${this.state.token}`
           },
           //change user when have a auth!!!
           body: JSON.stringify(body) //!!!!!!!!!!!change USER ID
@@ -69,6 +75,7 @@ render() {
       { menuItem:'Events I volunteer', render: () => <Tab.Pane>
         
          <MyVolunteerEvents
+         user={this.props.user} token={this.props.token}
         />
       </Tab.Pane> },
       { menuItem: 'My Created Events', render: () => <Tab.Pane>
