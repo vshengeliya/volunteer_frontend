@@ -12,12 +12,19 @@ class MyCreatedEvents extends React.Component {
         formToggle:false
       }
    
-    componentDidMount = () => {
-        fetch("http://localhost:3000/api/v1/users")
-        .then(resp => resp.json())
-        //change user when have a auth!!!
-        .then(data=> this.setState({myCreatedEvents:data[1].events}))
-    }
+      componentDidMount = () => {
+
+        const token = localStorage.getItem('token')
+        if (token){
+
+            fetch("http://localhost:3000/api/v1/users", {
+                      method: "GET",
+                      headers: { Authorization: `Bearer ${token}`},
+                  })
+            .then(resp => resp.json())
+            .then(data=> this.setState({myCreatedEvents:data.events}))
+          }
+        }
         
     renderMyEvents=()=>{
         return this.state.myCreatedEvents.map ((event)=> 
@@ -36,8 +43,15 @@ class MyCreatedEvents extends React.Component {
         let id = obj.event.id
         let newArray = this.state.myCreatedEvents.filter((event => event.id !== obj.event.id))
         this.setState({myCreatedEvents:newArray})
-
-        fetch("http://localhost:3000/events/"+ id, {method: "DELETE"})
+        let options = {
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json",
+                Authorization: `Bearer ${this.props.token}`
+            },
+        }
+        fetch("http://localhost:3000/events/" + id, options)
     }
 
     submitFormHandler=(obj)=>{
@@ -58,20 +72,17 @@ class MyCreatedEvents extends React.Component {
             date: obj.date,
             city: obj.city,
             state: obj.state,
-            user_id:23 ///change the user id, when has auth!!!!
+            user_id: this.props.user.id
         }
-
-        // console.log(body)
 
         let options = {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json'
-                //, Authorization: `Bearer ${this.state.token}`
+                'Accept': 'application/json',
+                 Authorization: `Bearer ${this.props.token}`
             },
-            //change user when have a auth!!!
-            body: JSON.stringify(body) //!!!!!!!!!!!change USER ID
+            body: JSON.stringify(body)
            }  
         fetch("http://localhost:3000/events", options)
         .then(resp=>resp.json())

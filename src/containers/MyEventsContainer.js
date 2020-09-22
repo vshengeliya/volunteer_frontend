@@ -8,45 +8,18 @@ import UserProfileForm from '../components/UserProfileForm'
  
 class MyEventsContainer extends React.Component {
 
-// user Auth later!!!
     state={
-      myUser: [],
+    
       userForm: false
-    }
-
-    componentDidMount(){
-      fetch("http://localhost:3000/api/v1/users" , {
-        method: "GET",
-        headers: { Authorization: `Bearer ${this.props.token}`},
-    })
-    .then(resp => resp.json())
-//change user when have a auth!!!
-    .then(console.log)
-   
-      // .then(data=> this.setState({myUser:data}))///change USER ID
     }
 
     userHandler=(obj)=>{
 
      this.setState({userForm:true}) 
-
-     console.log(obj.myUser)
-    // let options = {
-    //   method: "PATCH",
-    //   headers: {
-    //       'Content-Type': 'application/json',
-    //       'Accept': 'application/json'
-    //       //, Authorization: `Bearer ${this.state.token}`
-    //   },
-    //   //change user when have a auth!!!
-    //   body: JSON.stringify(body) //!!!!!!!!!!!change USER ID
-    //  }  
-  // fetch("http://localhost:3000/users/23", options)////!!change USER ID
   }
 
    submitUserFormHandler=(e)=>{
 
-    console.log(e)
     this.setState({userForm:false})
 
     let body = {
@@ -62,12 +35,11 @@ class MyEventsContainer extends React.Component {
           headers: {
               'Content-Type': 'application/json',
               'Accept': 'application/json'
-              // , Authorization: `Bearer ${this.state.token}`
+              , Authorization: `Bearer ${this.state.token}`
           },
-          //change user when have a auth!!!
-          body: JSON.stringify(body) //!!!!!!!!!!!change USER ID
+          body: JSON.stringify(body) 
          }  
-      fetch("http://localhost:3000/api/v1/users/23", options)////!!change USER ID
+      fetch("http://localhost:3000/api/v1/users/" + this.props.user.id, options)
    }
 
 render() {
@@ -80,6 +52,7 @@ render() {
       </Tab.Pane> },
       { menuItem: 'My Created Events', render: () => <Tab.Pane>
         <MyCreatedEvents
+        user={this.props.user} token={this.props.token}
         />
         </Tab.Pane> }
     ]
@@ -89,15 +62,13 @@ render() {
 
       {this.state.userForm === true?
       <>
-        <UserProfileContainer myUser={this.state.myUser} userHandler={this.userHandler}/>
-        <UserProfileForm myUser={this.state.myUser} submitUserFormHandler={this.submitUserFormHandler}/> 
+        <UserProfileContainer userHandler={this.userHandler} user={this.props.user} token={this.props.token}/>
+        <UserProfileForm submitUserFormHandler={this.submitUserFormHandler} user={this.props.user} token={this.props.token}/> 
       </> :
       <>
-        <UserProfileContainer myUser={this.state.myUser} userHandler={this.userHandler}/>
+        <UserProfileContainer userHandler={this.userHandler} user={this.props.user} token={this.props.token}/>
         <Tab panes={panes} />
       </>
-    
-    
     }
        
      </>

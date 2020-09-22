@@ -6,12 +6,12 @@ class UserProfileForm extends React.Component{
     
     state={
         
-        firstName: this.props.myUser.first_name,
-        lastName: this.props.myUser.last_name, 
-        email: this.props.myUser.email,
-        image: this.props.myUser.image,
-        city: this.props.myUser.city,
-        state: this.props.myUser.state
+        firstName: this.props.user.first_name,
+        lastName: this.props.user.last_name, 
+        email: this.props.user.email,
+        image: this.props.user.image,
+        city: this.props.user.city,
+        state: this.props.user.state
     }
     
     changeHandler=(e)=>{

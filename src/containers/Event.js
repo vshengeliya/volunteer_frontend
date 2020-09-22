@@ -11,7 +11,6 @@ class Event extends React.Component {
         user: {},
         token: null,
         allEvents:[],
-        volunteerEvents: [],
         buttonToggle:null,
         searchNameValue:"",
         searchCityValue:""
@@ -53,21 +52,10 @@ class Event extends React.Component {
 
         }
     }
-
-    fetchUser=()=>{
-        fetch("http://localhost:3000/api/v1/users")
-        .then(resp => resp.json())
-         //change user when have a auth!!!
-         .then(data=> this.setState({volunteerEvents:data[0].my_attendances}))
-    }
     
     volunteerClickHandler=(obj)=>{
-          
-          this.fetchUser()
-        //change user when have a auth!!!
-        
-        if (this.state.volunteerEvents.find((event)=> event.id===obj.event.id)){
-            console.log(this.state.volunteerEvents)
+        if (this.state.user.my_attendances.find((event)=> event.id===obj.event.id)){
+            // console.log("line 60", this.state.user.my_attendances)
            return null
         } 
         else{
@@ -78,10 +66,9 @@ class Event extends React.Component {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
-                    //, Authorization: `Bearer ${this.state.token}`
+                    , Authorization: `Bearer ${this.state.token}`
                 },
-                //change user when have a auth!!!
-                body: JSON.stringify({user_id: 23, event_id: event_id, rating:null}) //!!!!!!!!!!!change USER ID
+                body: JSON.stringify({user_id: this.state.user.id, event_id: event_id, rating:null}) //!!!!!!!!!!!change USER ID
                }  
             fetch("http://localhost:3000/attendances", options)
         } 
@@ -111,10 +98,13 @@ class Event extends React.Component {
     }
     
     render() {
+
+        // console.log("all events", this.state.allEvents)
         
+        // console.log("my user", this.state.user)
     return (
         <>
-            {this.fetchUser}
+            {/* {this.fetchUser} */}
         
         <Route exact path="/" render={ () =>
             <AllEventContainer allEvents={this.state.allEvents}
@@ -133,7 +123,6 @@ class Event extends React.Component {
 
         <Route path="/myevents" render={ () =>
             <MyEventsContainer
-            volunteerEvents={this.state.volunteerEvents}
             user={this.state.user} token={this.state.token}
               />
         }/>  
