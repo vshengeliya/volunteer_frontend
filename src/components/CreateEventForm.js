@@ -1,11 +1,6 @@
-import React, { useState }from 'react'
-import { Button, Checkbox, Dropdown, Form, Select} from 'semantic-ui-react'
-import {
-  DateInput,
-  TimeInput,
-  DateTimeInput,
-  DatesRangeInput
-} from 'semantic-ui-calendar-react';
+import React from 'react'
+import { Button, Form} from 'semantic-ui-react'
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -33,8 +28,7 @@ class CreateEventForm extends React.Component{
         this.setState({date: newDate}) 
       }
       
-      render(){
-        // const [selectedDate, setSelectedDate] = useState(null)
+    render(){
 
         return(
             <Form widths={'equal'} 
@@ -54,9 +48,9 @@ class CreateEventForm extends React.Component{
               </Form.Field>
 
               <Form.Field width={4}>
-                   
                 <label>Event Type</label>
-                <input placeholder='type, exp. performance, cooking, assembling' name='eventType' value={this.state.eventType} onChange={this.changeHandler}/>
+                <input placeholder='Event Type' name='eventType' 
+                  value={this.state.eventType} onChange={this.changeHandler}/>
               </Form.Field>
 
               <Form.Field width={4}>
@@ -77,6 +71,7 @@ class CreateEventForm extends React.Component{
               <Form.Field width={4}>
                 <label>Date of the Event</label>
                 <DatePicker 
+                minDate={new Date()}
                 placeholder='choose date'
                 onChange={this.changeDateHandler}
                 value={this.state.date}/>
@@ -91,15 +86,8 @@ class CreateEventForm extends React.Component{
                 <label>  State</label>
                 <input placeholder='State' name='state' value={this.state.state} onChange={this.changeHandler}/>
               </Form.Field>
-
-              <Form>
-       
-        </Form>
-
-              
-
-      <Button type='submit'>Submit</Button>
-    </Form>
+                <Button type='submit'>Submit</Button>
+             </Form>
 
         )
     }

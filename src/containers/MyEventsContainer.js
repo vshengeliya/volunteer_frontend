@@ -9,18 +9,20 @@ import UserProfileForm from '../components/UserProfileForm'
 class MyEventsContainer extends React.Component {
 
     state={
-    
-      userForm: false
+      userForm: false,
+      updatedUserInfo: null
     }
 
     userHandler=(obj)=>{
 
      this.setState({userForm:true}) 
-  }
+    }
+    
+    submitUserFormHandler=(e)=>{
+      // console.log(e)
+    this.setState({updatedUserInfo: e })
+    this.setState({userForm:false}) 
 
-   submitUserFormHandler=(e)=>{
-
-    this.setState({userForm:false})
 
     let body = {
       first_name: e.firstName,
@@ -43,6 +45,8 @@ class MyEventsContainer extends React.Component {
    }
 
 render() {
+
+  console.log("updated User", this.state.updatedUserInfo)
     const panes =[
       { menuItem:'Events I volunteer', render: () => <Tab.Pane>
         
@@ -62,11 +66,11 @@ render() {
 
       {this.state.userForm === true?
       <>
-        <UserProfileContainer userHandler={this.userHandler} user={this.props.user} token={this.props.token}/>
+        <UserProfileContainer updatedUserInfo={this.state.updatedUserInfo} userHandler={this.userHandler} user={this.props.user} token={this.props.token}/>
         <UserProfileForm submitUserFormHandler={this.submitUserFormHandler} user={this.props.user} token={this.props.token}/> 
       </> :
       <>
-        <UserProfileContainer userHandler={this.userHandler} user={this.props.user} token={this.props.token}/>
+        <UserProfileContainer updatedUserInfo={this.state.updatedUserInfo} userHandler={this.userHandler} user={this.props.user} token={this.props.token}/>
         <Tab panes={panes} />
       </>
     }
