@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState }from 'react'
 import { Button, Checkbox, Dropdown, Form, Select} from 'semantic-ui-react'
 import {
   DateInput,
@@ -6,6 +6,8 @@ import {
   DateTimeInput,
   DatesRangeInput
 } from 'semantic-ui-calendar-react';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class CreateEventForm extends React.Component{
 
@@ -21,12 +23,18 @@ class CreateEventForm extends React.Component{
         state: ""
     }
 
-
     changeHandler=(e)=>{
-        this.setState({[e.target.name]: e.target.value})
+      this.setState({[e.target.name]: e.target.value})
     }
-
-    render(){
+    
+      changeDateHandler=(e)=>{
+        let date = e.toLocaleDateString()
+        let newDate = date.replace(/\//g, '-')
+        this.setState({date: newDate}) 
+      }
+      
+      render(){
+        // const [selectedDate, setSelectedDate] = useState(null)
 
         return(
             <Form widths={'equal'} 
@@ -63,27 +71,15 @@ class CreateEventForm extends React.Component{
 
               <Form.Field width={4}>
                 <label>Details of Event</label>
-                <input placeholder='describe the event'name='details' value={this.state.details} onChange={this.changeHandler}/>
-              </Form.Field>
-
-              {/* <DateInput
-                name="date"
-                placeholder="Date"
-                value={this.state.date}
-                iconPosition="left"
-                onChange={this.changeHandler}
-        /> */}
+                <input placeholder='describe the event' name='details' value={this.state.details} onChange={this.changeHandler}/>
+              </Form.Field>  
 
               <Form.Field width={4}>
-                {/* <DateInput
-                name="date"
-                placeholder="Date"
-                value={this.state.date}
-                iconPosition="left"
-                onChange={this.changeHandler}
-        /> */}
                 <label>Date of the Event</label>
-                {/* <input placeholder='example `09-30-2020' name='date' value={this.state.date} onChange={this.changeHandler}/> */}
+                <DatePicker 
+                placeholder='choose date'
+                onChange={this.changeDateHandler}
+                value={this.state.date}/>
               </Form.Field>
 
               <Form.Field width={4}>
