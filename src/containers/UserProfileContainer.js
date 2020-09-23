@@ -7,14 +7,11 @@ function UserProfileContainer (props){
 
         <Item.Group>
         <Item>
-          <Item.Image size='tiny' src='https://react.semantic-ui.com/images/wireframe/image.png' />
+          <Item.Image size='tiny' src={props.user.image} />
     
           <Item.Content>
             <Item.Header as='a'>{props.user.first_name} {props.user.last_name}</Item.Header>
             <Item.Meta>{props.user.city}, {props.user.state}</Item.Meta>
-            <Item.Description>
-              <Image src={props.image} />
-            </Item.Description>
             <Item.Extra>{props.user.email}</Item.Extra>
             <Item.Extra><Button onClick={()=>props.userHandler(props)}color={'facebook'}>Manage profile</Button></Item.Extra>
           </Item.Content>
