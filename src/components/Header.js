@@ -1,6 +1,8 @@
 import React from 'react';
 import { Header , Icon} from 'semantic-ui-react'
 import NavBar from './NavBar'
+import { Route } from 'react-router-dom'
+
 
 
 
@@ -10,6 +12,8 @@ function Head() {
 
     <Header as='h2' block={'bool'}> 
         <NavBar/>
+
+       
     </Header>
   );
 }

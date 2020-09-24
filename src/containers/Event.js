@@ -3,6 +3,7 @@ import AllEventContainer from './AllEventContainer'
 import MyEventsContainer from './MyEventsContainer'
 import LoginContainer from './LoginContainer'
 import { Route } from 'react-router-dom'
+import CreateAccountContainer from './CreateAccountContainer'
 
  
 class Event extends React.Component {
@@ -169,6 +170,7 @@ class Event extends React.Component {
 
     return (
         <>
+         <Route path="/create-account" render={ () => <CreateAccountContainer /> } />
         
         <Route exact path="/" render={ () =>
             <AllEventContainer allEvents={this.state.allEvents}
