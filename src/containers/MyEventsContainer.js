@@ -19,9 +19,9 @@ class MyEventsContainer extends React.Component {
     }
     
     submitUserFormHandler=(e)=>{
-      // console.log(e)
-    this.setState({updatedUserInfo: e })
-    this.setState({userForm:false}) 
+    
+     this.setState({updatedUserInfo: e })
+     this.setState({userForm:false}) 
 
 
     let body = {
@@ -46,15 +46,16 @@ class MyEventsContainer extends React.Component {
 
 render() {
 
-  console.log("updated User", this.state.updatedUserInfo)
     const panes =[
       { menuItem:'Events I volunteer', render: () => <Tab.Pane>
         
          <MyVolunteerEvents
          user={this.props.user} token={this.props.token}
+        //  volunteerButtonToggle={this.props.volunteerButtonToggle}
         />
       </Tab.Pane> },
       { menuItem: 'My Created Events', render: () => <Tab.Pane>
+
         <MyCreatedEvents
         user={this.props.user} token={this.props.token}
         submitFormHandler={this.props.submitFormHandler}

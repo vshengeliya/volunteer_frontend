@@ -29,15 +29,17 @@ class LoginContainer extends React.Component {
         console.log(this.props.user)
         return(
             <div>
-                {this.props.user ?
-                    <div>
-                        <div className="user-container"><h3>Welcome Back {this.props.user.first_name}</h3>
-                            <div className="my-information"><h5>My Information</h5>
+                {this.props.token ?
+                    <>
+                        <div className="user-container"><h3>Welcome Back {this.props.user.first_name}!</h3>
+                            <h5>Your Email: {this.props.user.email}</h5>
+                            <h5>Your location: {this.props.user.city}, {this.props.user.state}</h5>
                                 <button id="logout" onClick={this.logOutHelper}>Logout</button>
                             </div>
-                        </div>
+                            
+                            
+                        </>
 
-                    </div>
                     :
                     <LoginForm loginHandler={this.loginHandler}/>}
             </div>

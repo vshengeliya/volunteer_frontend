@@ -6,26 +6,7 @@ import EventCardD from '../components/EventCardD'
 
  
 class MyCreatedEvents extends React.Component {
-
-    state = {
-        myCreatedEvents: [],
-       
-      }
-   
-    //   componentDidMount = () => {
-
-    //     const token = localStorage.getItem('token')
-    //     if (token){
-
-    //         fetch("http://localhost:3000/api/v1/users", {
-    //                   method: "GET",
-    //                   headers: { Authorization: `Bearer ${token}`},
-    //               })
-    //         .then(resp => resp.json())
-    //         .then(data=> this.setState({myCreatedEvents:data.events}))
-    //       }
-    //     }
-        
+    
     renderMyEvents=()=>{
         return this.props.user.events.map ((event)=> 
         <EventCardD event={event}
@@ -34,14 +15,8 @@ class MyCreatedEvents extends React.Component {
         />)
     }
         
-  
-
- 
-
-   
     render() {
 
-        // console.log('my created events', this.props.user.events)
         
     return (
      <>

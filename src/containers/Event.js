@@ -14,7 +14,9 @@ class Event extends React.Component {
         buttonToggle:null,
         searchNameValue:"",
         searchCityValue:"",
-        formToggle:false
+        formToggle:false,
+        volunteerButtonToggle:false, 
+        volunteeredCard:null
     }
 
     setUserState = (data) => {
@@ -50,15 +52,22 @@ class Event extends React.Component {
                         user: data.user,
                         token: token})
                 })
-
         }
     }
     
     volunteerClickHandler=(obj)=>{
+       
+        // let newArray = [...this.state.user.my_attendances, obj]
+        
+        // let newUser = Object.assign({}, this.state.user);
+        // newUser.events = newArray;
+
+        // this.setState({user: newUser});
         if (this.state.user.my_attendances.find((event)=> event.id===obj.event.id)){
-           return null
+           return null && alert("already volunteered")
         } 
         else{
+            this.setState({volunteerButtonToggle:true})
 
             let event_id = obj.event.id
             let options = {
@@ -68,7 +77,7 @@ class Event extends React.Component {
                     'Accept': 'application/json'
                     , Authorization: `Bearer ${this.state.token}`
                 },
-                body: JSON.stringify({user_id: this.state.user.id, event_id: event_id, rating:null}) //!!!!!!!!!!!change USER ID
+                body: JSON.stringify({user_id: this.state.user.id, event_id: event_id, rating:null}) 
                }  
             fetch("http://localhost:3000/attendances", options)
         } 
@@ -85,14 +94,11 @@ class Event extends React.Component {
     }
 
     filteredByNameEvents=()=>{
-
         let newArray = this.state.allEvents.filter((event)=> event.name.toLowerCase().includes(this.state.searchNameValue.toLowerCase()))
         return newArray  
     }
 
-
     filteredByCityEvents=()=>{
-
         let newArray = this.state.allEvents.filter((event)=> event.city.toLowerCase().includes(this.state.searchCityValue.toLowerCase()))
         return newArray  
     }
@@ -106,7 +112,6 @@ class Event extends React.Component {
         let newArray = [...this.state.user.events, obj]
         let eventArray = [...this.state.allEvents, obj]
         let newUser = Object.assign({}, this.state.user);
-        // console.log("newUser", newUser)
         newUser.events = newArray;
 
         this.setState({user: newUser});
@@ -162,11 +167,6 @@ class Event extends React.Component {
     
     render() {
 
-        // console.log("Updated events", this.state.user)
-
-        // console.log("new state", newState)
-
-        console.log("allevents", this.state.allEvents)
     return (
         <>
         
@@ -180,6 +180,10 @@ class Event extends React.Component {
             filteredByNameEvents={this.filteredByNameEvents()}
             filteredByCityEvents={this.filteredByCityEvents()}
             allEvents={this.filteredByCityEvents()}
+            volunteerButtonToggle={this.state.volunteerButtonToggle}
+            volunteeredCard={this.state.volunteeredCard}
+            user={this.state.user}
+            allEvents={this.state.allEvents}
          
             />
         }/>  

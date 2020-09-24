@@ -13,11 +13,19 @@ class AllEventContainer extends React.Component {
          return this.props.filteredByCityEvents.map ((event)=> 
          <EventCard event={event}
          volunteerClickHandler={this.props.volunteerClickHandler}
+         volunteerButtonToggle={this.props.volunteerButtonToggle}
+         volunteeredCard={this.props.volunteeredCard}
+         user={this.props.user}
+         allEvents={this.props.allEvents}
          />)
       } else {
          return this.props.filteredByNameEvents.map ((event)=> 
          <EventCard event={event}
          volunteerClickHandler={this.props.volunteerClickHandler}
+         volunteerButtonToggle={this.props.volunteerButtonToggle}
+         volunteeredCard={this.props.volunteeredCard}
+         user={this.props.user}
+         allEvents={this.props.allEvents}
          />) 
       }
     }
