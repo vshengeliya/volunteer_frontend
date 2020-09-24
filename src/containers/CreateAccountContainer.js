@@ -1,11 +1,13 @@
 import React from "react";
 import CreateAccountForm from "../components/CreateAccountForm";
+import LoginForm from "../components/LoginForm";
 
 const usersUrl = "http://localhost:3000/api/v1/users/"
 
 class CreatAccountContainer extends React.Component{
 
     submitHandler = (obj) => {
+
 
         const data = {
             user: {
@@ -35,8 +37,11 @@ class CreatAccountContainer extends React.Component{
     }
 
     render(){
+        
         return(
-            <div><CreateAccountForm submitHandler={this.submitHandler}/></div>
+            
+            <CreateAccountForm submitHandler={this.submitHandler}/>
+        
         )
     }
 }

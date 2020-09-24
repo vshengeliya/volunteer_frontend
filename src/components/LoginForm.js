@@ -46,7 +46,7 @@ class LoginForm extends React.Component {
             <div>
                 <div className="login-form-wrapper">
                     <h3>Login</h3>
-                    <form onSubmit={this.submitHandler} className="new-user-container">
+                    <form onSubmit={this.submitHandler} className="new-user-container" ><a href="./login"></a>
                         <input name="username" type="text" placeholder="Username" value={this.state.username} onChange={this.onChangeHandler}/>
                         <input name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.onChangeHandler}/>
                         <br />

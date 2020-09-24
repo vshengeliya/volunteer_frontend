@@ -2,8 +2,8 @@ import React from 'react'
 import AllEventContainer from './AllEventContainer'
 import MyEventsContainer from './MyEventsContainer'
 import LoginContainer from './LoginContainer'
-import { Route } from 'react-router-dom'
 import CreateAccountContainer from './CreateAccountContainer'
+import { Route } from 'react-router-dom'
 
  
 class Event extends React.Component {
@@ -170,7 +170,6 @@ class Event extends React.Component {
 
     return (
         <>
-         <Route path="/create-account" render={ () => <CreateAccountContainer /> } />
         
         <Route exact path="/" render={ () =>
             <AllEventContainer allEvents={this.state.allEvents}
@@ -186,10 +185,11 @@ class Event extends React.Component {
             volunteeredCard={this.state.volunteeredCard}
             user={this.state.user}
             allEvents={this.state.allEvents}
-         
+            
             />
         }/>  
         <Route path="/login" render={ () => <LoginContainer user={this.state.user} token={this.state.token} setUserState={this.setUserState}/> } />
+        <Route path="/create-account" render={ () => <CreateAccountContainer /> } />
 
         <Route path="/myevents" render={ () =>
             <MyEventsContainer
