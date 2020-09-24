@@ -29,28 +29,14 @@ class MyCreatedEvents extends React.Component {
     renderMyEvents=()=>{
         return this.props.user.events.map ((event)=> 
         <EventCardD event={event}
-        deleteEventClickHandler={this.deleteEventClickHandler}
+        deleteEventClickHandler={this.props.deleteEventClickHandler}
         //    volunteerClickHandler={this.props.volunteerClickHandler}
         />)
     }
         
   
 
-    deleteEventClickHandler =(obj)=>{
-        
-        let id = obj.event.id
-        let newArray = this.state.myCreatedEvents.filter((event => event.id !== obj.event.id))
-        this.setState({myCreatedEvents:newArray})
-        let options = {
-            method: "DELETE",
-            headers: {
-                "content-type": "application/json",
-                "accept": "application/json",
-                Authorization: `Bearer ${this.props.token}`
-            },
-        }
-        fetch("http://localhost:3000/events/" + id, options)
-    }
+ 
 
    
     render() {

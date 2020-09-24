@@ -60,6 +60,7 @@ render() {
         submitFormHandler={this.props.submitFormHandler}
         createEventHandler={this.props.createEventHandler}
         formToggle={this.props.formToggle}
+        deleteEventClickHandler={this.props.deleteEventClickHandler}
         />
         </Tab.Pane> }
     ]

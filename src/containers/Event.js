@@ -108,7 +108,7 @@ class Event extends React.Component {
         let newUser = Object.assign({}, this.state.user);
         // console.log("newUser", newUser)
         newUser.events = newArray;
-        
+
         this.setState({user: newUser});
         this.setState({allEvents:eventArray})
 
@@ -137,6 +137,27 @@ class Event extends React.Component {
         fetch("http://localhost:3000/events", options)
         .then(resp=>resp.json())
         .then(data=>this.setState({formToggle:false}))
+    }
+
+    deleteEventClickHandler =(obj)=>{
+        
+        let id = obj.event.id
+        let newArray = this.state.user.events.filter((event => event.id !== obj.event.id))
+        let newEventArray = this.state.allEvents.filter((event => event.id !== obj.event.id))
+        let newUser = Object.assign({}, this.state.user);
+        newUser.events = newArray;
+        this.setState({user: newUser});
+        this.setState({allEvents:newEventArray})
+
+        let options = {
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json",
+                Authorization: `Bearer ${this.state.token}`
+            },
+        }
+        fetch("http://localhost:3000/events/" + id, options)
     }
     
     render() {
@@ -170,6 +191,7 @@ class Event extends React.Component {
             submitFormHandler={this.submitFormHandler}
             createEventHandler={this.createEventHandler}
             formToggle={this.state.formToggle}
+            deleteEventClickHandler={this.deleteEventClickHandler}
               />
         }/>  
         </>
