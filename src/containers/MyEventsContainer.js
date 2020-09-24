@@ -57,6 +57,9 @@ render() {
       { menuItem: 'My Created Events', render: () => <Tab.Pane>
         <MyCreatedEvents
         user={this.props.user} token={this.props.token}
+        submitFormHandler={this.props.submitFormHandler}
+        createEventHandler={this.props.createEventHandler}
+        formToggle={this.props.formToggle}
         />
         </Tab.Pane> }
     ]

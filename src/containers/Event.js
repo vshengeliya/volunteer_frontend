@@ -13,7 +13,8 @@ class Event extends React.Component {
         allEvents:[],
         buttonToggle:null,
         searchNameValue:"",
-        searchCityValue:""
+        searchCityValue:"",
+        formToggle:false
     }
 
     setUserState = (data) => {
@@ -55,7 +56,6 @@ class Event extends React.Component {
     
     volunteerClickHandler=(obj)=>{
         if (this.state.user.my_attendances.find((event)=> event.id===obj.event.id)){
-            // console.log("line 60", this.state.user.my_attendances)
            return null
         } 
         else{
@@ -96,15 +96,58 @@ class Event extends React.Component {
         let newArray = this.state.allEvents.filter((event)=> event.city.toLowerCase().includes(this.state.searchCityValue.toLowerCase()))
         return newArray  
     }
+
+    createEventHandler=()=>{
+        this.setState({formToggle:true})
+    }
+
+    submitFormHandler=(obj)=>{
+
+        let newArray = [...this.state.user.events, obj]
+        let eventArray = [...this.state.allEvents, obj]
+        let newUser = Object.assign({}, this.state.user);
+        // console.log("newUser", newUser)
+        newUser.events = newArray;
+        
+        this.setState({user: newUser});
+        this.setState({allEvents:eventArray})
+
+        let body = {
+            name: obj.name,
+            value_proposition: obj.valueProposition, 
+            event_type: obj.eventType,
+            quantity: obj.quantity,
+            image: obj.image,
+            details: obj.details,
+            date: obj.date,
+            city: obj.city,
+            state: obj.state,
+            user_id: this.state.user.id
+        }
+
+        let options = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                 Authorization: `Bearer ${this.props.token}`
+            },
+            body: JSON.stringify(body)
+           }  
+        fetch("http://localhost:3000/events", options)
+        .then(resp=>resp.json())
+        .then(data=>this.setState({formToggle:false}))
+    }
     
     render() {
 
-        // console.log("all events", this.state.allEvents)
-        
-        // console.log("my user", this.state.user)
+        // console.log("Updated events", this.state.user)
+
+        // console.log("new state", newState)
+
+        console.log("allevents", this.state.allEvents)
     return (
         <>
-            {/* {this.fetchUser} */}
         
         <Route exact path="/" render={ () =>
             <AllEventContainer allEvents={this.state.allEvents}
@@ -124,6 +167,9 @@ class Event extends React.Component {
         <Route path="/myevents" render={ () =>
             <MyEventsContainer
             user={this.state.user} token={this.state.token}
+            submitFormHandler={this.submitFormHandler}
+            createEventHandler={this.createEventHandler}
+            formToggle={this.state.formToggle}
               />
         }/>  
         </>
