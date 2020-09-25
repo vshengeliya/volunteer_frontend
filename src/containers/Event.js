@@ -170,28 +170,45 @@ class Event extends React.Component {
 
     submitCommentHandler=(e, eventId)=>{
 
-        console.log("e", e)
-        console.log("eventId", eventId)
-    //     let body={
-    //         comment:e,
-    //         user_id: this.state.user.id,
-    //         event_id: eventId ,
-    //         date: new Date()
-    //     }
+        let date = new Date().toLocaleDateString()
+        let newDate = date.replace(/\//g, '-')
 
-    //     const options = {
-    //         method: "POST",
-    //         headers: {
-    //             "content-type": "application/json",
-    //             "accept": "application/json"
-    //         },
-    //         body: JSON.stringify(body)
-    //     }
+        // let newEvent=[...this.state.allEvents]
 
-    //     fetch("http://localhost:3000/comments", options)
-    //         .then(res => res.json())
-    //         .then(console.log)
-      
+        // let event = newEvent.find((event)=> event.id === eventId)
+
+        // let eventArray = event.comments.push(e.newComment)
+
+        // console.log(event.comments)
+
+        // let newArray = [...this.state.user.comments, e.newComment]
+        // let commentArray = [...this.state.allEvents, e.newComment]
+        // let newEvent = Object.assign({}, this.state.allEvents);
+        // newEvent.comments = newArray;
+
+        // this.setState({user: newUser});
+        // this.setState({allEvents:commentArray})
+        
+        let body={
+            comment:e.newComment,
+            user_id: this.state.user.id,
+            event_id: eventId ,
+            date: newDate
+        }
+
+        const options = {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json",
+                Authorization: `Bearer ${this.state.token}`
+            },
+            body: JSON.stringify(body)
+        }
+
+        fetch("http://localhost:3000/comments", options)
+            .then(res => res.json())
+            .then(console.log)
       }
     
     render() {
@@ -215,7 +232,6 @@ class Event extends React.Component {
             user={this.state.user}
             allEvents={this.state.allEvents}
             submitCommentHandler={this.submitCommentHandler}
-            eventId={this.eventId}
             
             />
         )
