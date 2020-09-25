@@ -9,10 +9,11 @@ class MyVolunteerEvents extends React.Component {
     }
    
     componentDidMount = () => {
+      let id =this.props.user.id
       const token = localStorage.getItem('token')
       if (token){
 
-        fetch("http://localhost:3000/api/v1/users", {
+        fetch("http://localhost:3000/api/v1/users/", {
                   method: "GET",
                   headers: { Authorization: `Bearer ${token}`},
               })

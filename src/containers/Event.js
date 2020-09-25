@@ -18,6 +18,7 @@ class Event extends React.Component {
         formToggle:false,
         volunteerButtonToggle:false, 
         volunteeredCard:null
+        
     }
 
     setUserState = (data) => {
@@ -165,13 +166,41 @@ class Event extends React.Component {
         }
         fetch("http://localhost:3000/events/" + id, options)
     }
+
+
+    submitCommentHandler=(e, eventId)=>{
+
+        console.log("e", e)
+        console.log("eventId", eventId)
+    //     let body={
+    //         comment:e,
+    //         user_id: this.state.user.id,
+    //         event_id: eventId ,
+    //         date: new Date()
+    //     }
+
+    //     const options = {
+    //         method: "POST",
+    //         headers: {
+    //             "content-type": "application/json",
+    //             "accept": "application/json"
+    //         },
+    //         body: JSON.stringify(body)
+    //     }
+
+    //     fetch("http://localhost:3000/comments", options)
+    //         .then(res => res.json())
+    //         .then(console.log)
+      
+      }
     
     render() {
 
     return (
         <>
         
-        <Route path="/events" render={ () =>
+        <Route path="/events" render={ () =>(
+
             <AllEventContainer allEvents={this.state.allEvents}
             volunteerClickHandler={this.volunteerClickHandler}
             searchNameValue={this.state.searchNameValue}
@@ -185,8 +214,11 @@ class Event extends React.Component {
             volunteeredCard={this.state.volunteeredCard}
             user={this.state.user}
             allEvents={this.state.allEvents}
+            submitCommentHandler={this.submitCommentHandler}
+            eventId={this.eventId}
             
             />
+        )
         }/>  
         <Route path="/login" render={ () => <LoginContainer user={this.state.user} token={this.state.token} setUserState={this.setUserState}/> } />
         <Route path="/create-account" render={ () => <CreateAccountContainer /> } />

@@ -4,7 +4,6 @@ import { Button, Comment, Form, Header } from 'semantic-ui-react'
 class Comments extends React.Component {
 
     render(){
-    console.log(this.props.comment)
     return (
 
     

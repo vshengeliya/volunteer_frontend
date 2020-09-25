@@ -9,6 +9,17 @@ import '../CommentContainer.css'
  
 class AllEventContainer extends React.Component {
 
+
+   state={
+      users:[]
+   }
+
+   componentDidMount(){
+      fetch('http://localhost:3000/api/v1/users')
+      .then(resp=>resp.json())
+      .then(console.log)
+   }
+
     renderAllEvents=()=>{
 
       if (this.props.searchNameValue === ""){
@@ -35,6 +46,10 @@ class AllEventContainer extends React.Component {
       }
     }
 
+
+    
+
+
     render() {
         
     return (
@@ -59,9 +74,9 @@ class AllEventContainer extends React.Component {
                allEvents={this.props.allEvents}
                />
              <CommentContainer className ='right'
-       
              event={foundEvent}
-            
+             id={id}
+             submitCommentHandler={this.props.submitCommentHandler}
              />
              </div>
              )
