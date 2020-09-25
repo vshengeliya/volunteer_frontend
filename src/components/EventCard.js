@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Icon, Image, Grid , Button} from 'semantic-ui-react'
+import {NavLink} from 'react-router-dom'
 
 function EventCard(props) {
 
@@ -42,6 +43,11 @@ function EventCard(props) {
              </a>
            </Card.Content>
            <Card.Content extra>
+           <NavLink to={`events/${props.event.id}`}>
+            <h4>Check the event comments</h4>
+           </NavLink>
+           </Card.Content>
+           <Card.Content extra>
              {/* {props.user.events.includes((event => event.id === props.volunteeredCard.id))?
              <Button color={'gray'} onClick={()=>props.volunteerClickHandler(props)}>
                Volunteered
@@ -54,7 +60,9 @@ function EventCard(props) {
              {/* <Button negative onClick={()=>props.deleteEventClickHandler(props)}>Delete event</Button> */}
              <Button primary onClick={()=>props.volunteerClickHandler(props)}>
                Volunteer
-             </Button>
+             </Button> 
+            
+            
            </Card.Content>
        </Card>
 

@@ -171,7 +171,7 @@ class Event extends React.Component {
     return (
         <>
         
-        <Route exact path="/" render={ () =>
+        <Route path="/events" render={ () =>
             <AllEventContainer allEvents={this.state.allEvents}
             volunteerClickHandler={this.volunteerClickHandler}
             searchNameValue={this.state.searchNameValue}

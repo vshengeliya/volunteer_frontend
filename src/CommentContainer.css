@@ -1,0 +1,17 @@
+.comment-block {
+    display: inline-block;
+}
+
+/* .card-comment {
+    display: inline-block;
+} */
+
+.left {
+    float: left;
+    width: calc(100% - 200px);
+}
+
+.right {
+    float: right;
+    width: 200px;
+}

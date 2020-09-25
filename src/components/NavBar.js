@@ -17,7 +17,7 @@ class NavBar extends React.Component {
       <div>
 
         <NavLink
-          to="/"
+          to="/events"
           exact
           style={link}
           activeStyle={{
