@@ -11,13 +11,13 @@ class AllEventContainer extends React.Component {
 
 
    state={
-      users:[]
+      allComments:[]
    }
 
    componentDidMount(){
-      fetch('http://localhost:3000/api/v1/users')
+      fetch('http://localhost:3000/comments')
       .then(resp=>resp.json())
-      .then(console.log)
+      .then(data=> this.setState({allComments:data},  ()=>console.log(this.state.allComments)))
    }
 
     renderAllEvents=()=>{
@@ -77,6 +77,7 @@ class AllEventContainer extends React.Component {
              event={foundEvent}
              id={id}
              submitCommentHandler={this.props.submitCommentHandler}
+             allComments={this.state.allComments}
              />
              </div>
              )

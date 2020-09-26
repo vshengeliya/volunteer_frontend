@@ -173,6 +173,11 @@ class Event extends React.Component {
         let date = new Date().toLocaleDateString()
         let newDate = date.replace(/\//g, '-')
 
+        let date1 = new Date()
+        console.log(date1)
+
+        // console.log(e)
+
         // let newEvent=[...this.state.allEvents]
 
         // let event = newEvent.find((event)=> event.id === eventId)
@@ -188,14 +193,15 @@ class Event extends React.Component {
 
         // this.setState({user: newUser});
         // this.setState({allEvents:commentArray})
-        
+
         let body={
-            comment:e.newComment,
+            comment:e.comment,
             user_id: this.state.user.id,
             event_id: eventId ,
             date: newDate
         }
 
+        console.log(body)
         const options = {
             method: "POST",
             headers: {
@@ -203,9 +209,9 @@ class Event extends React.Component {
                 "accept": "application/json",
                 Authorization: `Bearer ${this.state.token}`
             },
-            body: JSON.stringify(body)
+            // note: I changed this line below
+            body: JSON.stringify({key: body})
         }
-
         fetch("http://localhost:3000/comments", options)
             .then(res => res.json())
             .then(console.log)

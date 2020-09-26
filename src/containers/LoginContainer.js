@@ -29,7 +29,7 @@ class LoginContainer extends React.Component {
         console.log(this.props.user)
         return(
             <div>
-                {this.props.token ?
+                {this.props.user ?
                     <>
                         <div className="user-container"><h3>Welcome Back {this.props.user.first_name}!</h3>
                             <h5>Your Email: {this.props.user.email}</h5>

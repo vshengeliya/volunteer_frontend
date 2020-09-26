@@ -4,6 +4,8 @@ import { Button, Comment, Form, Header } from 'semantic-ui-react'
 class Comments extends React.Component {
 
     render(){
+      // let comment = this.props.allComments.filter((event_id===this.props.id))
+      // console.log('comment', comment)
     return (
 
     

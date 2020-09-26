@@ -7,12 +7,12 @@ class CommentContainer extends React.Component{
 
 
     state={
-        newComment:''
+        comment:''
     }
 
     renderComments=()=>{
         return this.props.event.comments.map(comment=> 
-        <Comments key={comment.id} comment={comment}/>
+        <Comments key={comment.id} comment={comment} allComments={this.props.allComments}/>
         )
     }
 
@@ -36,7 +36,7 @@ class CommentContainer extends React.Component{
                  }}
                  >
                      
-                     <Form.TextArea value={this.state.value} name='newComment' onChange={this.onChangeHandler} />
+                     <Form.TextArea value={this.state.value} name='comment' onChange={this.onChangeHandler} />
                      <Button content='Add Reply' labelPosition='left' icon='edit' primary 
                      />
                     </Form>
