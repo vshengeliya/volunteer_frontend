@@ -8,10 +8,9 @@ function EventCard(props) {
 
   
     <div >
-  
-      <Grid.Column>
+      <Grid.Column >
         <Card >
-           <Image src={props.event.image} wrapped ui={false} />
+           <Image src={props.event.image} ui={false} width='290px' height='200px'/>
            <Card.Content>
             <Card.Header>{props.event.name}</Card.Header>
            

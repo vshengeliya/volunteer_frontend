@@ -152,9 +152,12 @@ class AllEventContainer extends React.Component {
                             searchByCityHandler={this.props.searchByCityHandler}
                             allEvents={this.props.allEvents}
                             />
-                           <Grid columns={3}>
-                           <Grid.Row>
+                           <Grid>
+                           <Grid.Row stretched={'bool'}>
+                              <div class="wrapper">
+
                             {this.renderAllEvents()}
+                              </div>
                             </Grid.Row>
                            </Grid >
                       </>
