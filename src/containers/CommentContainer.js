@@ -12,12 +12,11 @@ class CommentContainer extends React.Component{
 
     renderComments=()=>{
         return this.props.event.comments.map(comment=> 
-        <Comments key={comment.id} comment={comment} allComments={this.props.allComments}/>
+        <Comments key={comment.id} comment={comment} allComments={this.props.allComments} id={this.props.id}/>
         )
     }
 
     onChangeHandler=(e)=>{
-        // console.log (e)
 
         this.setState({[e.target.name]: e.target.value})
       }

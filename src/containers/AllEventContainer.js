@@ -78,6 +78,7 @@ class AllEventContainer extends React.Component {
              id={id}
              submitCommentHandler={this.props.submitCommentHandler}
              allComments={this.state.allComments}
+             
              />
              </div>
              )

@@ -171,10 +171,12 @@ class Event extends React.Component {
     submitCommentHandler=(e, eventId)=>{
 
         let date = new Date().toLocaleDateString()
-        let newDate = date.replace(/\//g, '-')
-
-        let date1 = new Date()
-        console.log(date1)
+        let newDate = date.replace(/\//g, '-').split("-").reverse().join("-")
+        // let result = newDate.split('-').reverse().join('');
+        var result = newDate.split("-").reverse().join("-")
+ 
+        console.log("result",result)
+        console.log("newDate", newDate)
 
         // console.log(e)
 
@@ -201,20 +203,20 @@ class Event extends React.Component {
             date: newDate
         }
 
-        console.log(body)
-        const options = {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-                "accept": "application/json",
-                Authorization: `Bearer ${this.state.token}`
-            },
-            // note: I changed this line below
-            body: JSON.stringify({key: body})
-        }
-        fetch("http://localhost:3000/comments", options)
-            .then(res => res.json())
-            .then(console.log)
+        // console.log(body)
+        // const options = {
+        //     method: "POST",
+        //     headers: {
+        //         "content-type": "application/json",
+        //         "accept": "application/json",
+        //         Authorization: `Bearer ${this.state.token}`
+        //     },
+        //     // note: I changed this line below
+        //     body: JSON.stringify({key: body})
+        // }
+        // fetch("http://localhost:3000/comments", options)
+        //     .then(res => res.json())
+        //     .then(console.log)
       }
     
     render() {
