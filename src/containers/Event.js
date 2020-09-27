@@ -167,57 +167,6 @@ class Event extends React.Component {
         fetch("http://localhost:3000/events/" + id, options)
     }
 
-
-    submitCommentHandler=(e, eventId)=>{
-
-        let date = new Date().toLocaleDateString()
-        let newDate = date.replace(/\//g, '-').split("-").reverse().join("-")
-        // let result = newDate.split('-').reverse().join('');
-        var result = newDate.split("-").reverse().join("-")
- 
-        console.log("result",result)
-        console.log("newDate", newDate)
-
-        // console.log(e)
-
-        // let newEvent=[...this.state.allEvents]
-
-        // let event = newEvent.find((event)=> event.id === eventId)
-
-        // let eventArray = event.comments.push(e.newComment)
-
-        // console.log(event.comments)
-
-        // let newArray = [...this.state.user.comments, e.newComment]
-        // let commentArray = [...this.state.allEvents, e.newComment]
-        // let newEvent = Object.assign({}, this.state.allEvents);
-        // newEvent.comments = newArray;
-
-        // this.setState({user: newUser});
-        // this.setState({allEvents:commentArray})
-
-        let body={
-            comment:e.comment,
-            user_id: this.state.user.id,
-            event_id: eventId ,
-            date: newDate
-        }
-
-        // console.log(body)
-        // const options = {
-        //     method: "POST",
-        //     headers: {
-        //         "content-type": "application/json",
-        //         "accept": "application/json",
-        //         Authorization: `Bearer ${this.state.token}`
-        //     },
-        //     // note: I changed this line below
-        //     body: JSON.stringify({key: body})
-        // }
-        // fetch("http://localhost:3000/comments", options)
-        //     .then(res => res.json())
-        //     .then(console.log)
-      }
     
     render() {
 
@@ -239,7 +188,6 @@ class Event extends React.Component {
             volunteeredCard={this.state.volunteeredCard}
             user={this.state.user}
             allEvents={this.state.allEvents}
-            submitCommentHandler={this.submitCommentHandler}
             
             />
         )

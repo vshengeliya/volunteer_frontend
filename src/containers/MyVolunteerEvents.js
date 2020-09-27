@@ -18,7 +18,6 @@ class MyVolunteerEvents extends React.Component {
                   headers: { Authorization: `Bearer ${token}`},
               })
         .then(resp => resp.json())
-        // .then(data=> console.log(data))
         .then(data=> this.setState({myVolunteerEvents:data.my_attendances}))
       }
     }

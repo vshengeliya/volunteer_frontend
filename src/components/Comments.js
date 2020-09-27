@@ -10,8 +10,6 @@ class Comments extends React.Component {
      let name =  comment.user.first_name
      let image = comment.user.image
 
-     console.log(this.props.allComments)
-
     return (
     
               <Comment.Group>
@@ -20,7 +18,7 @@ class Comments extends React.Component {
                   <Comment.Content>
                     <Comment.Author as='a'>{name}</Comment.Author>
                     <Comment.Metadata>
-                      <div>{this.props.comment.date}</div>
+                      <div>@{this.props.comment.date}</div>
                     </Comment.Metadata>
                       <Comment.Text>{this.props.comment.comment}</Comment.Text>
                   

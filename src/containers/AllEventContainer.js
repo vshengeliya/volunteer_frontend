@@ -4,6 +4,7 @@ import EventCard from '../components/EventCard'
 import EventCardD from '../components/EventCardD'
 import SearchForm from '../components/SearchForm'
 import CommentContainer from './CommentContainer'
+import {Grid} from 'semantic-ui-react'
 import '../CommentContainer.css'
 
  
@@ -19,6 +20,58 @@ class AllEventContainer extends React.Component {
       .then(resp=>resp.json())
       .then(data=> this.setState({allComments:data},  ()=>console.log(this.state.allComments)))
    }
+
+   submitCommentHandler=(e, eventId)=>{
+
+      let date = new Date().toLocaleDateString()
+      let newDate = date.replace(/\//g, '-').split("-").reverse().join("-")
+      // let result = newDate.split('-').reverse().join('');
+      // var result = newDate.split("-").reverse().join("-")
+
+      // console.log("result",result)
+      // console.log("newDate", newDate)
+
+      // console.log(e)
+      
+      let body={
+          comment:e.comment,
+          user_id: this.props.user.id,
+          event_id: eventId ,
+          date: newDate
+      }
+      let newComments=[...this.state.allEvents, body]
+      let newArray = newComments.push(body)
+      this.setState({allComments:newArray})
+
+      // let event = newEvent.find((event)=> event.id === eventId)
+
+      // let eventArray = event.comments.push(e.newComment)
+
+      // console.log(event.comments)
+
+      // let newArray = [...this.state.user.comments, e.newComment]
+      // let commentArray = [...this.state.allEvents, e.newComment]
+      // let newEvent = Object.assign({}, this.state.allEvents);
+      // newEvent.comments = newArray;
+
+      // this.setState({user: newUser});
+      // this.setState({allEvents:commentArray})
+
+
+      // const options = {
+      //     method: "POST",
+      //     headers: {
+      //         "content-type": "application/json",
+      //         "accept": "application/json",
+      //         Authorization: `Bearer ${this.state.token}`
+      //     },
+      //     // note: Changed this line below to {key:value}
+      //     body: JSON.stringify({comment: body})
+      // }
+      // fetch("http://localhost:3000/comments", options)
+      //     .then(res => res.json())
+      //     .then(console.log)
+    }
 
     renderAllEvents=()=>{
 
@@ -51,6 +104,7 @@ class AllEventContainer extends React.Component {
 
 
     render() {
+       console.log(this.state.allComments)
         
     return (
        <>
@@ -76,7 +130,7 @@ class AllEventContainer extends React.Component {
              <CommentContainer className ='right'
              event={foundEvent}
              id={id}
-             submitCommentHandler={this.props.submitCommentHandler}
+             submitCommentHandler={this.submitCommentHandler}
              allComments={this.state.allComments}
              
              />
@@ -98,7 +152,11 @@ class AllEventContainer extends React.Component {
                             searchByCityHandler={this.props.searchByCityHandler}
                             allEvents={this.props.allEvents}
                             />
+                           <Grid columns={3}>
+                           <Grid.Row>
                             {this.renderAllEvents()}
+                            </Grid.Row>
+                           </Grid >
                       </>
                    )
                 }
