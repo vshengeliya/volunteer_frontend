@@ -19,7 +19,6 @@ class UserProfileForm extends React.Component{
     }
     
     render(){
-        // console.log("user profile container", this.props.myUser)
 
         return(
           <Form onSubmit={

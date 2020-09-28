@@ -42,6 +42,8 @@ class MyEventsContainer extends React.Component {
           body: JSON.stringify(body) 
          }  
       fetch("http://localhost:3000/api/v1/users/" + this.props.user.id, options)
+      .then(resp=>resp.json())
+      .then(() => this.props.componentDidMount())
    }
 
 render() {

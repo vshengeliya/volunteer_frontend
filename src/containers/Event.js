@@ -82,6 +82,8 @@ class Event extends React.Component {
                 body: JSON.stringify({user_id: this.state.user.id, event_id: event_id, rating:null}) 
                }  
             fetch("http://localhost:3000/attendances", options)
+            .then(resp=>resp.json())
+            .then(() => this.componentDidMount())
         } 
     }
 
@@ -165,6 +167,8 @@ class Event extends React.Component {
             },
         }
         fetch("http://localhost:3000/events/" + id, options)
+        .then(resp=>resp.json())
+        .then(() => this.componentDidMount())
     }
 
     
@@ -202,6 +206,7 @@ class Event extends React.Component {
             createEventHandler={this.createEventHandler}
             formToggle={this.state.formToggle}
             deleteEventClickHandler={this.deleteEventClickHandler}
+            componentDidMount={this.componentDidMount}
               />
         }/>  
         </>
