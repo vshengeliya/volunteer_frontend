@@ -26,7 +26,7 @@ class LoginContainer extends React.Component {
     }
 
     render() {
-        console.log(this.props.user)
+
         return(
             <div>
                 {this.props.token ?

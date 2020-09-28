@@ -1,19 +1,18 @@
 import React from 'react';
-import { Card, Icon, Image, Grid , Button} from 'semantic-ui-react'
+import { Card, Icon, Image, Grid , Button, Popup, Rating} from 'semantic-ui-react'
 import {NavLink} from 'react-router-dom'
 import CreateEventForm from './CreateEventForm';
 
 function EventCard(props) {
 
-let myEventsId = props.user.my_attendances.map((event)=>event.id)
-let alleventsId = props.allEvents.map((event)=>event.id)
-console.log(myEventsId)
-console.log(alleventsId)
-
-
+// let myEventsId = props.user.my_attendances.map((event)=>event.id)
+// let alleventsId = props.allEvents.map((event)=>event.id)
+// console.log(myEventsId)
   return (
 
     <div >
+      <Popup
+      trigger={
       <Grid.Column >
         <Card >
            <Image src={props.event.image} ui={false} width='290px' height='200px'/>
@@ -52,7 +51,15 @@ console.log(alleventsId)
        </Card>
 
  
-      </Grid.Column>
+      </Grid.Column >
+      }>
+      
+      <Popup.Header>Rating</Popup.Header>
+      <Popup.Content>
+        <Rating icon='star' defaultRating={props.event.attendances[0].rating} maxRating={5} />
+      </Popup.Content>
+    </Popup>
+
 
     </div>
   );
