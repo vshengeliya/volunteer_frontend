@@ -1,8 +1,9 @@
 import React from 'react'
-import EventCard from '../components/EventCard'
 import { Button } from 'semantic-ui-react'
 import CreateEventForm from '../components/CreateEventForm'
 import EventCardD from '../components/EventCardD'
+import {Grid} from 'semantic-ui-react'
+import '../CommentContainer.css'
 
  
 class MyCreatedEvents extends React.Component {
@@ -26,7 +27,13 @@ class MyCreatedEvents extends React.Component {
       <Button color='teal' onClick={()=>{this.props.createEventHandler(this.props)}}>Create New Event</Button>
       <br/>
       <br/>
-      {this.renderMyEvents()}
+      <Grid>
+            <Grid.Row stretched={'bool'}>
+               <div class="wrapper">
+               {this.renderMyEvents()}
+               </div>
+             </Grid.Row>
+          </Grid >
       </>
      }
      </>

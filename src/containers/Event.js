@@ -171,6 +171,47 @@ class Event extends React.Component {
         .then(() => this.componentDidMount())
     }
 
+    submitCommentHandler=(e, eventId)=>{
+
+        let date = new Date().toLocaleDateString()
+        let newDate = date.replace(/\//g, '-').split("-").reverse().join("-")
+        
+        let body={
+            comment:e.comment,
+            user_id: this.state.user.id,
+            event_id: eventId ,
+            date: newDate
+        }
+
+        // let events = [...this.state.allEvents]
+        // let event = events.find((event)=>event.id === eventId)
+        // let comments = event.comments
+        // // let newCommentArray = comments.push(body)
+
+        // console.log(body)
+        // console.log(comments)
+        
+        // let newEvent = Object.assign({}, this.state.allEvents);
+        // newEvent.comments = newArray;
+
+        // this.setState({user: newUser});
+        // let newComments=[...this.state.allComments, body]
+        // this.setState({allComments: newComments}, ()=>console.log(this.state.allComments))
+  
+  
+        const options = {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json",
+                Authorization: `Bearer ${this.state.token}`
+            },
+            // note: Changed this line below to {key:value}
+            body: JSON.stringify({comment: body})
+        }
+        fetch("http://localhost:3000/comments", options)
+      }
+
     
     render() {
 
@@ -192,6 +233,7 @@ class Event extends React.Component {
             volunteeredCard={this.state.volunteeredCard}
             user={this.state.user}
             allEvents={this.state.allEvents}
+            submitCommentHandler={this.submitCommentHandler}   
             
             />
         )

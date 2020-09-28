@@ -6,11 +6,9 @@ function EventCardD(props) {
 
   return (
     <div>
-        <Grid >
-    <Grid.Row>
-      <Grid.Column columns={3}>
-        <Card>
-           <Image src={props.event.image} wrapped ui={false} />
+     <Grid.Column >
+        <Card >
+           <Image src={props.event.image} ui={false} width='290px' height='200px'/>
            <Card.Content>
             <Card.Header>{props.event.name}</Card.Header>
            
@@ -36,11 +34,8 @@ function EventCardD(props) {
              <Button negative onClick={()=>props.deleteEventClickHandler(props)}>Delete event</Button>
            </Card.Content>
        </Card>
-
- 
       </Grid.Column>
-    </Grid.Row>
-  </Grid>
+ 
     </div>
   );
 }

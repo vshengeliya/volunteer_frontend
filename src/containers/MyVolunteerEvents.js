@@ -1,5 +1,7 @@
 import React from 'react'
 import EventCardD from '../components/EventCardD'
+import {Grid} from 'semantic-ui-react'
+import '../CommentContainer.css'
  
 class MyVolunteerEvents extends React.Component {
 
@@ -71,7 +73,13 @@ class MyVolunteerEvents extends React.Component {
         
     return (
         <>
-     {this.renderAllEvents()}
+           <Grid>
+            <Grid.Row stretched={'bool'}>
+               <div class="wrapper">
+               {this.renderAllEvents()}
+               </div>
+             </Grid.Row>
+          </Grid >
      </>
     )
   }

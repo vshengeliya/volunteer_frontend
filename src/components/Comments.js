@@ -10,8 +10,14 @@ class Comments extends React.Component {
      let name =  comment.user.first_name
      let image = comment.user.image
 
+     console.log('all', this.props.allComments)
+     console.log('comments', comments)
+     console.log('comment', comment)
+     console.log('name', name)
+
     return (
     
+      this.props.allComments.length === 0? <h2>Loading events</h2>:
               <Comment.Group>
                 <Comment>
                   <Comment.Avatar src={image} />
