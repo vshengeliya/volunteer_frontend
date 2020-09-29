@@ -1,5 +1,13 @@
 import React from 'react'
+import {Form, Button} from "semantic-ui-react";
+import styled from 'styled-components'
 
+const LoginFormWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+`
 
 class LoginForm extends React.Component {
 
@@ -36,27 +44,31 @@ class LoginForm extends React.Component {
             this.props.loginHandler(this.state)
         }
 
-
-
     }
-
+    
     render() {
        
         return(
-            <div>
-                <div className="login-form-wrapper">
-                    <h3>Login</h3>
-                    <form onSubmit={this.submitHandler} className="new-user-container" ><a href="./login"></a>
-                        <input name="username" type="text" placeholder="Username" value={this.state.username} onChange={this.onChangeHandler}/>
+
+            <LoginFormWrapper id='login-form-wrapper'>
+                <div>
+                    <h3>Please Log in</h3>
+                    <Form onSubmit={this.submitHandler} className="new-user-container" ><a href="./login"></a>
+                    <Form.Field>
+                        <input name="username" placeholder="Username" value={this.state.username} onChange={this.onChangeHandler}/>
+                    </Form.Field>
+                    <Form.Field>
                         <input name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.onChangeHandler}/>
-                        <br />
+                    </Form.Field>
+
                         <div>{this.state.errorStatus}</div>
-                        <input type="submit" value="login" className="login-form-submit" />
-                    </form>
-                    <div id="create-account-link"><a href="./create-account">Create Account</a></div>
+                        <Button primary type="submit" value="login">Signin</Button>
+                    </Form>
+                    <br/>
+                    <div id="create-account-link"><a href="./create-account">Not a user? Create Account</a></div>
                 </div>
 
-            </div>
+            </LoginFormWrapper>
         )
     }
 

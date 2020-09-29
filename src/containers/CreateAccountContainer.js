@@ -1,6 +1,14 @@
 import React from "react";
 import CreateAccountForm from "../components/CreateAccountForm";
-import LoginForm from "../components/LoginForm";
+import styled from 'styled-components'
+
+
+const AccountFormWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+`
 
 const usersUrl = "http://localhost:3000/api/v1/users/"
 
@@ -39,8 +47,7 @@ class CreatAccountContainer extends React.Component{
     render(){
         
         return(
-            
-            <CreateAccountForm submitHandler={this.submitHandler}/>
+                <CreateAccountForm submitHandler={this.submitHandler}/>
         
         )
     }

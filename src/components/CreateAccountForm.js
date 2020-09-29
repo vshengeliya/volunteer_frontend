@@ -36,14 +36,17 @@ class CreateAccountForm extends React.Component {
     }
 
     render() {
+
         return(
             <>
+
             <h3>Create a new User Account</h3>
             <Form widths={'equal'} 
             onSubmit={(e)=>{
-                e.preventDefault()
+              e.preventDefault()
                 this.props.submitHandler(this.state)
                 }}>
+                 
             
 
             <Form.Field width={4} >
@@ -91,8 +94,10 @@ class CreateAccountForm extends React.Component {
                 <label>  State</label>
                 <input placeholder='State' name='state' value={this.state.state} onChange={this.changeHandler}/>
               </Form.Field>
+            
                 <Button type='submit'>Submit</Button>
              </Form>
+          
 
              </>
 

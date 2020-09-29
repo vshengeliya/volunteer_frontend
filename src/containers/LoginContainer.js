@@ -1,5 +1,8 @@
 import React from "react"
 import LoginForm from "../components/LoginForm";
+import { List } from 'semantic-ui-react'
+
+import styled from 'styled-components'
 
 class LoginContainer extends React.Component {
 
@@ -27,15 +30,45 @@ class LoginContainer extends React.Component {
 
     render() {
 
+    const LoginFormWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+`
+
         return(
             <div>{
                     this.props.token ?
                     <>
-                        <div className="user-container"><h3>Welcome Back {this.props.user.first_name}!</h3>
-                            <h5>Your Email: {this.props.user.email}</h5>
-                            <h5>Your location: {this.props.user.city}, {this.props.user.state}</h5>
+                    <LoginFormWrapper>
+
+                        <div className="user-container" ><h3>Welcome Back!</h3>
+                             <List size={'medium'} verticalAlign={'bottom'}>
+                                <List.Item>
+                                  <List.Icon name='users' />
+                                    <List.Content>{this.props.user.first_name} {this.props.user.last_name}</List.Content>
+                                </List.Item>
+                                <List.Item>
+                                  <List.Icon name='marker' />
+                                  <List.Content>{this.props.user.city}, {this.props.user.state}</List.Content>
+                                </List.Item>
+                                <List.Item>
+                                  <List.Icon name='mail' />
+                                  <List.Content>
+                                    <a href="mailto:">{this.props.user.email}</a>
+                                  </List.Content>
+                                </List.Item>
+                                <List.Item>
+                                  <List.Icon name='linkify' />
+                                  <List.Content>
+                                    <a href='https://github.com/vshengeliya'>https://github.com/vshengeliya</a>
+                                  </List.Content>
+                                </List.Item>
+                                    </List>
                                 <button id="logout" onClick={this.logOutHelper}>Logout</button>
                             </div>
+                    </LoginFormWrapper>
                             
                             
                         </>
