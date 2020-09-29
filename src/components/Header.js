@@ -10,10 +10,8 @@ function Head() {
   
   return (
 
-    <Header as='h2' block={'bool'}> 
-        <NavBar/>
-
-       
+    <Header as='h4' block={'bool'} size={'medium'} color ={'teal'} textAligh={'right'} dividing={'bool'}> 
+        <NavBar/> 
     </Header>
   );
 }

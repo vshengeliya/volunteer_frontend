@@ -29,14 +29,14 @@ class CommentContainer extends React.Component{
                 <br/>
                  <Header as='h3' dividing>Comments </Header>
                  {this.renderComments()}
-                 <Form reply onSubmit={(e)=>
-                { e.preventDefault()
+                 <Form reply onSubmit={(e)=>{   
+                    e.preventDefault()
                     this.props.submitCommentHandler(this.state, this.props.id)
                     this.setState({comment: ""})
                 }}
                 > 
             
-                <Form.TextArea value={this.state.value} name='comment' onChange={this.onChangeHandler} />
+                <Form.TextArea value={this.state.comment} name='comment' onChange={this.onChangeHandler} />
                  <Button content='Add Reply' labelPosition='left' icon='edit' primary size={'medium'}
                      />
                 </Form>

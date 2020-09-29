@@ -28,8 +28,8 @@ class LoginContainer extends React.Component {
     render() {
 
         return(
-            <div>
-                {this.props.token ?
+            <div>{
+                    this.props.token ?
                     <>
                         <div className="user-container"><h3>Welcome Back {this.props.user.first_name}!</h3>
                             <h5>Your Email: {this.props.user.email}</h5>
@@ -42,6 +42,7 @@ class LoginContainer extends React.Component {
 
                     :
                     <LoginForm loginHandler={this.loginHandler}/>}
+               
             </div>
         )
     }

@@ -53,10 +53,9 @@ class MyVolunteerEvents extends React.Component {
                       Authorization: `Bearer ${this.props.token}`
                   },
               })
-               })//set state is acync
-
-              //  .then(resp=>resp.json())
-              //  .then(data=>{ fetch("http://localhost:3000/api/v1/users")})
+              .then(resp=>resp.json())
+              .then(data=>{ fetch("http://localhost:3000/api/v1/users")})
+               })
             })
          }
 

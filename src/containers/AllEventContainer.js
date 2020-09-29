@@ -52,6 +52,15 @@ class AllEventContainer extends React.Component {
       }
     }
 
+    componentDidUpdate(prevProps){
+       if(this.props.allEvents !==prevProps.allEvents){
+         console.log("if componentDidUpdate", prevProps)
+          fetch("http://localhost:3000/comments")
+          .then(resp=>resp.json())
+          .then(data=>this.setState({...this.state, allComments:data}))
+       }
+    }
+
     render() {
         
     return (
@@ -66,7 +75,7 @@ class AllEventContainer extends React.Component {
              let foundEvent = this.props.allEvents.find((event)=> event.id===id)
              return (
           <div>
-             <EventCard className='left'
+             <EventCard
                key={foundEvent.id}
                event={foundEvent}
                volunteerClickHandler={this.props.volunteerClickHandler}
@@ -76,7 +85,7 @@ class AllEventContainer extends React.Component {
                allEvents={this.props.allEvents}
                />
                
-             <CommentContainer className ='right'
+             <CommentContainer
              event={foundEvent}
              id={id}
              submitCommentHandler={this.props.submitCommentHandler}

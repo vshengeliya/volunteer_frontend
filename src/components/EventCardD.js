@@ -4,6 +4,8 @@ import { Card, Icon, Image, Grid , Button} from 'semantic-ui-react'
 
 function EventCardD(props) {
 
+  console.log(props.event)
+
   return (
     <div>
      <Grid.Column >

@@ -41,7 +41,7 @@ class Event extends React.Component {
     componentDidMount = () => {
         fetch("http://localhost:3000/events/")
             .then(resp => resp.json())
-            .then(data=> this.setState({allEvents:data}))
+            .then(data=> this.setState({...this.state, allEvents:data}))
         const token = localStorage.getItem('token')
         if (token){
             fetch("http://localhost:3000/api/v1/profile", {
@@ -50,23 +50,18 @@ class Event extends React.Component {
             })
                 .then(res => res.json())
                 .then(data => {
-                    this.setState({
+                    this.setState({...this.state.allEvents,
                         user: data.user,
                         token: token})
                 })
         }
+        console.log("componentDidMount")
     }
     
     volunteerClickHandler=(obj)=>{
        
-        // let newArray = [...this.state.user.my_attendances, obj]
-        
-        // let newUser = Object.assign({}, this.state.user);
-        // newUser.events = newArray;
-
-        // this.setState({user: newUser});
         if (this.state.user.my_attendances.find((event)=> event.id===obj.event.id)){
-           return null && alert("already volunteered")
+           return null
         } 
         else{
             this.setState({volunteerButtonToggle:true})
@@ -174,7 +169,7 @@ class Event extends React.Component {
     submitCommentHandler=(e, eventId)=>{
 
         let date = new Date().toLocaleDateString()
-        let newDate = date.replace(/\//g, '-').split("-").reverse().join("-")
+        let newDate = date.replace(/\//g, '-').split("-").join("-")
         
         let body={
             comment:e.comment,
@@ -182,6 +177,8 @@ class Event extends React.Component {
             event_id: eventId ,
             date: newDate
         }
+
+        console.log(newDate)
 
         // let events = [...this.state.allEvents]
         // let event = events.find((event)=>event.id === eventId)
@@ -198,23 +195,29 @@ class Event extends React.Component {
         // let newComments=[...this.state.allComments, body]
         // this.setState({allComments: newComments}, ()=>console.log(this.state.allComments))
   
-  
+        const token = localStorage.getItem('token')
         const options = {
             method: "POST",
             headers: {
                 "content-type": "application/json",
                 "accept": "application/json",
-                Authorization: `Bearer ${this.state.token}`
+                Authorization: `Bearer ${token}`
             },
             // note: Changed this line below to {key:value}
             body: JSON.stringify({comment: body})
         }
         fetch("http://localhost:3000/comments", options)
+        .then(resp=>resp.json())
+        .then(data=> {
+            fetch("http://localhost:3000/events")
+            .then(resp => resp.json())
+            .then(data=> this.setState({allEvents:data}))
+        })
       }
 
     
     render() {
-
+        console.log("allevent", this.state.allEvents)
     return (
         <>
         

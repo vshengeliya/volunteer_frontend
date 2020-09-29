@@ -4,16 +4,12 @@ import { Button, Comment, Form, Header } from 'semantic-ui-react'
 class Comments extends React.Component {
 
     render(){
+      console.log('all', this.props.allComments)
 
      let comments = this.props.allComments.filter((comment=> comment.event_id === this.props.id ))
      let comment = comments.find((comment=>comment.comment===this.props.comment.comment))
-     let name =  comment.user.first_name
-     let image = comment.user.image
-
-     console.log('all', this.props.allComments)
-     console.log('comments', comments)
-     console.log('comment', comment)
-     console.log('name', name)
+     let name = comment && comment.user?  comment.user.first_name : "pending"
+     let image = comment && comment.user?  comment.user.image : "pending"
 
     return (
     
