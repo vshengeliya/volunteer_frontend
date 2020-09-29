@@ -5,6 +5,7 @@ import SearchForm from '../components/SearchForm'
 import CommentContainer from './CommentContainer'
 import {Grid} from 'semantic-ui-react'
 import '../CommentContainer.css'
+import "../Search.css"
 
  
 class AllEventContainer extends React.Component {
