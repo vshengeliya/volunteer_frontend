@@ -1,42 +1,33 @@
 // src/Navbar.js
 import React from 'react'
+import { Input, Menu } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom';
  
 class NavBar extends React.Component {
     render() {
         
     return (
-      <div>
-
-        <NavLink
-          to="/events"
-          exact
-          // style={link}
-          // activeStyle={{
-          //   background: 'grey'
-          // }}
+    
+        <>
+      <Menu secondary>
+      <Menu.Item
+        as={NavLink} to="/events"
+        name='events'
+       
+      />
+        <Menu.Item
+          as={NavLink} to="/myevents"
+          name='my events'
           
-        >All events</NavLink>
-        <br/>
-        <NavLink
-          to="/login"
-          exact
-          // style={link}
-          // activeStyle={{
-          //   background: 'grey'
-          // }}
-        >Login</NavLink>
-        <br/>
-        <NavLink
-          to="/myevents"
-          exact
-          // style={link}
-          // activeStyle={{
-          //   background: 'grey'
-          // }}
-        >My events</NavLink>
-
-      </div>
+          />
+      <Menu.Item position={'right'} active
+        as={NavLink} to="/login"
+        name='login'
+       
+      />
+       
+         </Menu>
+        </>
     )
   }
 }

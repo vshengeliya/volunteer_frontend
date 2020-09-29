@@ -4,10 +4,15 @@ import {NavLink} from 'react-router-dom'
 
 function EventCard(props) {
 
-// let myEventsId = props.user.my_attendances.map((event)=>event.id)
-// let alleventsId = props.allEvents.map((event)=>event.id)
-// console.log(props.event.date
-  // ) 
+let myEventsId = props.user.my_attendances.map((event)=>event.id)
+
+// console.log("my att", props.user.my_attendances)
+console.log("event", props.event)
+// console.log("my events", myEventsId)
+
+let check = myEventsId.includes(props.event.id)
+console.log("check", check)
+  
   return (
 
     <div >
@@ -42,9 +47,11 @@ function EventCard(props) {
            </NavLink>
            </Card.Content>
            <Card.Content extra>
-             <Button primary onClick={()=>props.volunteerClickHandler(props)}>
+             {check=== true?<Button>
+               Volunteerd
+             </Button> : <Button primary onClick={()=>props.volunteerClickHandler(props)}>
                Volunteer
-             </Button> 
+             </Button> }
             
            </Card.Content>
        </Card>

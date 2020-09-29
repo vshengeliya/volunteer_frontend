@@ -17,8 +17,7 @@ class Event extends React.Component {
         searchCityValue:"",
         formToggle:false,
         volunteerButtonToggle:false, 
-        volunteeredCard:null
-        
+        volunteeredCard:null 
     }
 
     setUserState = (data) => {
@@ -152,6 +151,7 @@ class Event extends React.Component {
         newUser.events = newArray;
         this.setState({user: newUser});
         this.setState({allEvents:newEventArray})
+        this.setState({volunteered:false})
 
         let options = {
             method: "DELETE",
@@ -163,7 +163,11 @@ class Event extends React.Component {
         }
         fetch("http://localhost:3000/events/" + id, options)
         .then(resp=>resp.json())
-        .then(() => this.componentDidMount())
+        .then(() => {
+            fetch("http://localhost:3000/attendances")
+            .then(resp=>resp.json())
+            .then(() => this.componentDidMount())
+        })
     }
 
     submitCommentHandler=(e, eventId)=>{
@@ -177,23 +181,6 @@ class Event extends React.Component {
             event_id: eventId ,
             date: newDate
         }
-
-        console.log(newDate)
-
-        // let events = [...this.state.allEvents]
-        // let event = events.find((event)=>event.id === eventId)
-        // let comments = event.comments
-        // // let newCommentArray = comments.push(body)
-
-        // console.log(body)
-        // console.log(comments)
-        
-        // let newEvent = Object.assign({}, this.state.allEvents);
-        // newEvent.comments = newArray;
-
-        // this.setState({user: newUser});
-        // let newComments=[...this.state.allComments, body]
-        // this.setState({allComments: newComments}, ()=>console.log(this.state.allComments))
   
         const token = localStorage.getItem('token')
         const options = {
@@ -236,8 +223,8 @@ class Event extends React.Component {
             volunteeredCard={this.state.volunteeredCard}
             user={this.state.user}
             allEvents={this.state.allEvents}
-            submitCommentHandler={this.submitCommentHandler}   
-            
+            submitCommentHandler={this.submitCommentHandler}  
+           
             />
         )
         }/>  
