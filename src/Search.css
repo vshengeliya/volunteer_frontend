@@ -5,6 +5,8 @@
     vertical-align: left; 
     white-space: nowrap;
     position: relative;
+    padding-left: 10px;
+    
     
   }
   .container-1 input#search{

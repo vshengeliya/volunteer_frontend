@@ -10,6 +10,7 @@ class NavBar extends React.Component {
     
         <>
       <Menu secondary>
+       
       <Menu.Item
         as={NavLink} to="/events"
         name='events'
@@ -20,12 +21,15 @@ class NavBar extends React.Component {
           name='my events'
           
           />
-      <Menu.Item position={'right'} active
+      <Menu.Item position={'right'}
         as={NavLink} to="/login"
         name='login'
        
       />
-       
+      <Menu.Item>
+      <img id="logo-container" src="./images/volunteer-logo.jpg" alt="volunteer-logo" />
+      </Menu.Item>
+
          </Menu>
         </>
     )

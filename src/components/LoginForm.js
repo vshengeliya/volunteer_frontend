@@ -52,7 +52,7 @@ class LoginForm extends React.Component {
 
             <LoginFormWrapper id='login-form-wrapper'>
                 <div>
-                    <h3>Please Log in</h3>
+                    <h3>Please Log In to Volunteer</h3>
                     <Form onSubmit={this.submitHandler} className="new-user-container" ><a href="./login"></a>
                     <Form.Field>
                         <input name="username" placeholder="Username" value={this.state.username} onChange={this.onChangeHandler}/>
@@ -62,7 +62,7 @@ class LoginForm extends React.Component {
                     </Form.Field>
 
                         <div>{this.state.errorStatus}</div>
-                        <Button primary type="submit" value="login">Signin</Button>
+                        <Button primary type="submit" value="login">Sign in</Button>
                     </Form>
                     <br/>
                     <div id="create-account-link"><a href="./create-account">Not a user? Create Account</a></div>

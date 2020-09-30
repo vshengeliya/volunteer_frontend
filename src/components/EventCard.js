@@ -43,7 +43,8 @@ console.log("check", check)
            </Card.Content>
            <Card.Content extra>
            <NavLink to={`events/${props.event.id}`}>
-            <h4>Check the event comments</h4>
+            <h4>Comments</h4>
+            {/* <a href={`events/${props.event.id}`}>Comment</a> */}
            </NavLink>
            </Card.Content>
            <Card.Content extra>

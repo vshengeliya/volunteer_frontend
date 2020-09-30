@@ -39,7 +39,7 @@ class LoginContainer extends React.Component {
 
         return(
             <div>{
-                    this.props.user ?
+                    this.props.token ?
                     <>
                     <LoginFormWrapper>
 
