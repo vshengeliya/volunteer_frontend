@@ -9,8 +9,7 @@ import { Route } from 'react-router-dom'
 class Event extends React.Component {
 
     state={
-        user: {},
-        token: null,
+     
         allEvents:[],
         buttonToggle:null,
         searchNameValue:"",
@@ -20,46 +19,18 @@ class Event extends React.Component {
         volunteeredCard:null 
     }
 
-    setUserState = (data) => {
-        if (data === "logout") {
-            this.setState({
-                user: {},
-                token: null,
-                allEvents:[]
-            })
-        } else {
-            console.log("Set user state", data)
-            this.setState({
 
-                user: data.user,
-                token: data.jwt,
-            })
-        }
-    }
 
     componentDidMount = () => {
         fetch("http://localhost:3000/events/")
             .then(resp => resp.json())
             .then(data=> this.setState({...this.state, allEvents:data}))
-        const token = localStorage.getItem('token')
-        if (token){
-            fetch("http://localhost:3000/api/v1/profile", {
-                method: "GET",
-                headers: { Authorization: `Bearer ${token}`},
-            })
-                .then(res => res.json())
-                .then(data => {
-                    this.setState({...this.state.allEvents,
-                        user: data.user,
-                        token: token})
-                })
-        }
         console.log("componentDidMount")
     }
     
     volunteerClickHandler=(obj)=>{
        
-        if (this.state.user.my_attendances.find((event)=> event.id===obj.event.id)){
+        if (this.props.user.my_attendances.find((event)=> event.id===obj.event.id)){
            return null
         } 
         else{
@@ -71,13 +42,13 @@ class Event extends React.Component {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
-                    , Authorization: `Bearer ${this.state.token}`
+                    , Authorization: `Bearer ${this.props.token}`
                 },
-                body: JSON.stringify({user_id: this.state.user.id, event_id: event_id, rating:null}) 
+                body: JSON.stringify({user_id: this.props.user.id, event_id: event_id, rating:null}) 
                }  
             fetch("http://localhost:3000/attendances", options)
             .then(resp=>resp.json())
-            .then(() => this.componentDidMount())
+            .then(() => this.props.componentDidMount())
         } 
     }
 
@@ -107,9 +78,9 @@ class Event extends React.Component {
 
     submitFormHandler=(obj)=>{
 
-        let newArray = [...this.state.user.events, obj]
+        let newArray = [...this.props.user.events, obj]
         let eventArray = [...this.state.allEvents, obj]
-        let newUser = Object.assign({}, this.state.user);
+        let newUser = Object.assign({}, this.props.user);
         newUser.events = newArray;
 
         this.setState({user: newUser});
@@ -125,7 +96,7 @@ class Event extends React.Component {
             date: obj.date,
             city: obj.city,
             state: obj.state,
-            user_id: this.state.user.id
+            user_id: this.props.user.id
         }
 
         let options = {
@@ -139,17 +110,22 @@ class Event extends React.Component {
            }  
         fetch("http://localhost:3000/events", options)
         .then(resp=>resp.json())
-        .then(data=>this.setState({formToggle:false}))
+        .then(()=>{
+            
+            this.setState({formToggle:false})
+            this.props.componentDidMount()
+        })
+            
     }
 
     deleteEventClickHandler =(obj)=>{
         
         let id = obj.event.id
-        let newArray = this.state.user.events.filter((event => event.id !== obj.event.id))
+        // let newArray = this.props.user.events.filter((event => event.id !== obj.event.id))
         let newEventArray = this.state.allEvents.filter((event => event.id !== obj.event.id))
-        let newUser = Object.assign({}, this.state.user);
-        newUser.events = newArray;
-        this.setState({user: newUser});
+        // let newUser = Object.assign({}, this.props.user);
+        // newUser.events = newArray;
+        // this.setState({user: newUser});
         this.setState({allEvents:newEventArray})
         this.setState({volunteered:false})
 
@@ -158,7 +134,7 @@ class Event extends React.Component {
             headers: {
                 "content-type": "application/json",
                 "accept": "application/json",
-                Authorization: `Bearer ${this.state.token}`
+                Authorization: `Bearer ${this.props.token}`
             },
         }
         fetch("http://localhost:3000/events/" + id, options)
@@ -166,7 +142,7 @@ class Event extends React.Component {
         .then(() => {
             fetch("http://localhost:3000/attendances")
             .then(resp=>resp.json())
-            .then(() => this.componentDidMount())
+            .then(() => this.props.componentDidMount())
         })
     }
 
@@ -177,7 +153,7 @@ class Event extends React.Component {
         
         let body={
             comment:e.comment,
-            user_id: this.state.user.id,
+            user_id: this.props.user.id,
             event_id: eventId ,
             date: newDate
         }
@@ -204,7 +180,7 @@ class Event extends React.Component {
 
     
     render() {
-        console.log("allevent", this.state.allEvents)
+        
     return (
         <>
         
@@ -221,24 +197,26 @@ class Event extends React.Component {
             allEvents={this.filteredByCityEvents()}
             volunteerButtonToggle={this.state.volunteerButtonToggle}
             volunteeredCard={this.state.volunteeredCard}
-            user={this.state.user}
+            user={this.props.user}
             allEvents={this.state.allEvents}
             submitCommentHandler={this.submitCommentHandler}  
            
             />
         )
         }/>  
-        <Route path="/login" render={ () => <LoginContainer user={this.state.user} token={this.state.token} setUserState={this.setUserState}/> } />
+        <Route path="/login" render={ () => <LoginContainer user={this.props.user} token={this.props.token} 
+        setUserState={this.props.setUserState} logOutHelper={this.props.logOutHelper}
+        loginHandler={this.props.loginHandler}/> } />
         <Route path="/create-account" render={ () => <CreateAccountContainer /> } />
 
         <Route path="/myevents" render={ () =>
             <MyEventsContainer
-            user={this.state.user} token={this.state.token}
+            user={this.props.user} token={this.props.token}
             submitFormHandler={this.submitFormHandler}
             createEventHandler={this.createEventHandler}
             formToggle={this.state.formToggle}
             deleteEventClickHandler={this.deleteEventClickHandler}
-            componentDidMount={this.componentDidMount}
+            componentDidMount={this.props.componentDidMount}
               />
         }/>  
         </>

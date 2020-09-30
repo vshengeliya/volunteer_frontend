@@ -54,7 +54,7 @@ class MyVolunteerEvents extends React.Component {
                   },
               })
               .then(resp=>resp.json())
-              .then(data=>{ fetch("http://localhost:3000/api/v1/users")})
+              .then(()=>this.props.componentDidMount())
                })
             })
          }

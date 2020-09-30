@@ -42,7 +42,7 @@ class MyEventsContainer extends React.Component {
           headers: {
               'Content-Type': 'application/json',
               'Accept': 'application/json'
-              , Authorization: `Bearer ${this.state.token}`
+              , Authorization: `Bearer ${this.props.token}`
           },
           body: JSON.stringify(body) 
          }  
@@ -60,6 +60,7 @@ render() {
         
          <MyVolunteerEvents
          user={this.props.user} token={this.props.token}
+         componentDidMount={this.props.componentDidMount}
         //  volunteerButtonToggle={this.props.volunteerButtonToggle}
         />
       </Tab.Pane> },
