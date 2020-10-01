@@ -11,6 +11,9 @@ class NavBar extends React.Component {
         <>
       <Menu secondary>
        
+      <Menu.Item>
+      <img id="logo-container" src="./images/volunteer-logo.jpg" alt="volunteer-logo" />
+      </Menu.Item>
       <Menu.Item
         as={NavLink} to="/events"
         name='events'
@@ -26,9 +29,6 @@ class NavBar extends React.Component {
         name='login'
        
       />
-      <Menu.Item>
-      <img id="logo-container" src="./images/volunteer-logo.jpg" alt="volunteer-logo" />
-      </Menu.Item>
 
          </Menu>
         </>

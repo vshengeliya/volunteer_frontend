@@ -68,11 +68,8 @@ class LoginContainer extends React.Component {
                                     </List>
                                 <button id="logout" onClick={this.logOutHelper}>Logout</button>
                             </div>
-                    </LoginFormWrapper>
-                            
-                            
+                    </LoginFormWrapper>         
                         </>
-
                     :
                     <LoginForm loginHandler={this.loginHandler}/>}
                
