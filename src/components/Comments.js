@@ -23,8 +23,10 @@ class Comments extends React.Component {
                       <div>@{this.props.comment.date}</div>
                     </Comment.Metadata>
                       <Comment.Text>{this.props.comment.comment}</Comment.Text>
+                      
                   
                   </Comment.Content>
+                  
                 </Comment>
             </Comment.Group>            
             )           
