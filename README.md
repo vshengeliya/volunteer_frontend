@@ -9,3 +9,5 @@ Why people volunteer?
 4. Volunteering creates empowerment. Maybe someone offered you a helping hand when you were down and out. Volunteering gives you the opportunity to pay that favor forward. Often times, a word of encouragement and a little assistance to those in need can help them get back on their feet.
 
 Volunteering has never been easier. Welcome to Volunteer App!
+
+Created by Veronika Dodda
