@@ -4,14 +4,10 @@ import {NavLink} from 'react-router-dom'
 
 function EventCard(props) {
 
-  console.log("user", props.user)
-
-let myEventsId = props.user.my_attendances.map((event)=>event.id)
-
-let check = myEventsId.includes(props.event.id)
+  //extra logic on the button
   
   return (
-
+    
     <div >
       <Grid.Column >
         <Card >
@@ -40,16 +36,27 @@ let check = myEventsId.includes(props.event.id)
            </NavLink>
            </Card.Content>
            <Card.Content extra>
-             {check=== true?<Button>
-               Volunteerd
-             </Button> : <Button primary onClick={()=>props.volunteerClickHandler(props)}>
+             <Button primary onClick={()=>props.volunteerClickHandler(props)}>
                Volunteer
-             </Button> }
+             </Button>
            </Card.Content>
        </Card>
-      </Grid.Column>
+      </Grid.Column> 
     </div>
   );
 }
 
 export default EventCard;
+
+// console.log("user", props.user)
+
+//   let myEventsId = props.user.my_attendances.map((event)=>event.id)
+//   let check = myEventsId.includes(props.event.id)
+
+// <Card.Content extra>
+//            { check=== true?<Button>
+//              Volunteerd
+//            </Button> : <Button primary onClick={()=>props.volunteerClickHandler(props)}>
+//              Volunteer
+//            </Button> }
+// </Card.Content>

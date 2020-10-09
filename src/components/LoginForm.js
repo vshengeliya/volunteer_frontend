@@ -9,6 +9,13 @@ const LoginFormWrapper = styled.div`
     height: auto;
 `
 
+const TextWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+`
+
 class LoginForm extends React.Component {
 
     state = {
@@ -52,7 +59,8 @@ class LoginForm extends React.Component {
 
             <LoginFormWrapper id='login-form-wrapper'>
                 <div>
-                    <h3>Please Log In to Volunteer</h3>
+                   
+                   <h3>Please Log In to Volunteer and <br/> <TextWrapper> see your Events</TextWrapper> </h3>
                     <Form onSubmit={this.submitHandler} className="new-user-container" ><a href="./login"></a>
                     <Form.Field>
                         <input name="username" placeholder="Username" value={this.state.username} onChange={this.onChangeHandler}/>

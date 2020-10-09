@@ -59,7 +59,7 @@ class Event extends React.Component {
     volunteerClickHandler=(obj)=>{
        
         if (this.state.user.my_attendances.find((event)=> event.id===obj.event.id)){
-           return null
+           return alert ('already volunteer')
         } 
         else{
             this.setState({volunteerButtonToggle:true})

@@ -51,6 +51,7 @@ render() {
         
          <MyVolunteerEvents
          user={this.props.user} token={this.props.token}
+         componentDidMount={this.props.componentDidMount}
         />
       </Tab.Pane> },
       { menuItem: 'My Created Events', render: () => <Tab.Pane>
