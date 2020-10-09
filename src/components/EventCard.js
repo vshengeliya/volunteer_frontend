@@ -4,9 +4,9 @@ import {NavLink} from 'react-router-dom'
 
 function EventCard(props) {
 
-let myEventsId = props.user.my_attendances.map((event)=>event.id)
+  console.log("user", props.user)
 
-console.log("event", props.event)
+let myEventsId = props.user.my_attendances.map((event)=>event.id)
 
 let check = myEventsId.includes(props.event.id)
   

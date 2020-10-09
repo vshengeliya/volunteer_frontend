@@ -5,7 +5,6 @@ import { Tab } from 'semantic-ui-react'
 import UserProfileContainer from './UserProfileContainer'
 import UserProfileForm from '../components/UserProfileForm'
 
- 
 class MyEventsContainer extends React.Component {
 
     state={
