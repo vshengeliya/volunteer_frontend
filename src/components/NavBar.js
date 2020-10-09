@@ -1,6 +1,6 @@
 // src/Navbar.js
 import React from 'react'
-import { Input, Menu } from 'semantic-ui-react'
+import {  Menu } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom';
  
 class NavBar extends React.Component {
@@ -29,7 +29,6 @@ class NavBar extends React.Component {
         name='login'
        
       />
-
          </Menu>
         </>
     )

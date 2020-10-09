@@ -71,7 +71,6 @@ class LoginForm extends React.Component {
             </LoginFormWrapper>
         )
     }
-
 }
 
 export default LoginForm

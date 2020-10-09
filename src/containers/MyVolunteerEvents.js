@@ -63,7 +63,6 @@ class MyVolunteerEvents extends React.Component {
        return this.state.myVolunteerEvents.map ((event)=> 
        <EventCardD event={event}
        deleteEventClickHandler={this.deleteEventClickHandler}
-      //  volunteerButtonToggle={this.props.volunteerButtonToggle}
        />)
     }
 

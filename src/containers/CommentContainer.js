@@ -5,7 +5,6 @@ import '../CommentContainer.css'
 
 class CommentContainer extends React.Component{
 
-
     state={
         comment:""
     }
@@ -41,8 +40,7 @@ class CommentContainer extends React.Component{
                      />
                 </Form>
             </div>
-                </>
-                
+                </>      
         )
     }
 }

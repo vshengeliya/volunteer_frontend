@@ -3,7 +3,6 @@ import { Button, Form} from 'semantic-ui-react'
 
 class UserProfileForm extends React.Component{
 
-    
     state={
         
         firstName: this.props.user.first_name,

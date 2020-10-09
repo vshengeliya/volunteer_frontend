@@ -20,13 +20,6 @@ class AllEventContainer extends React.Component {
       .then(data=> this.setState({allComments:data}))
    }
 
-   // componentDidUpdate(prevProps, prevState) {
-   //    if (prevProps.allComments !== this.state.allComments) {
-   //      console.log('comment state has changed.')
-   //    }
-   //  }
-
-
     renderAllEvents=()=>{
 
       if (this.props.searchNameValue === ""){
@@ -41,6 +34,7 @@ class AllEventContainer extends React.Component {
          user={this.props.user}
          allEvents={this.props.allEvents}
          />)
+
       } else {
          return this.props.filteredByNameEvents.map ((event)=> 
          <EventCard event={event}
@@ -67,7 +61,6 @@ class AllEventContainer extends React.Component {
     return (
        <>
        {this.props.allEvents.length === 0? <h2>Loading events</h2>:
-
        <>
         <Switch>
            <Route path ='/events/:id' render={({ match })=> {

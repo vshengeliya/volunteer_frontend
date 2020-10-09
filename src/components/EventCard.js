@@ -37,7 +37,6 @@ let check = myEventsId.includes(props.event.id)
            <Card.Content extra>
            <NavLink to={`events/${props.event.id}`}>
             <h4>Comments</h4>
-            {/* <a href={`events/${props.event.id}`}>Comment</a> */}
            </NavLink>
            </Card.Content>
            <Card.Content extra>

@@ -1,14 +1,5 @@
 import React from "react";
 import CreateAccountForm from "../components/CreateAccountForm";
-import styled from 'styled-components'
-
-
-const AccountFormWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-`
 
 const usersUrl = "http://localhost:3000/api/v1/users/"
 

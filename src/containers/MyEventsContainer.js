@@ -18,12 +18,6 @@ class MyEventsContainer extends React.Component {
      this.setState({userForm:true}) 
     }
 
-    // componentDidUpdate(prevState) {
-    //   const { token, user, componentDidMount } = this.props;
-    //   if (user!== prevState.user) {
-    //     componentDidMount(user.id, token.authToken)
-    //   }
-    // }
     submitUserFormHandler=(e)=>{
 
      this.setState({updatedUserInfo: e })
@@ -49,8 +43,6 @@ class MyEventsContainer extends React.Component {
       fetch("http://localhost:3000/api/v1/users/" + this.props.user.id, options)
       .then(resp=>resp.json())
       .then(() => this.props.componentDidMount())
-      // .then(() => this.componentDidUpdate())
-      // .then(data=>this.setState({updatedUserInfo: e }))
    }
 
 render() {
@@ -60,7 +52,6 @@ render() {
         
          <MyVolunteerEvents
          user={this.props.user} token={this.props.token}
-        //  volunteerButtonToggle={this.props.volunteerButtonToggle}
         />
       </Tab.Pane> },
       { menuItem: 'My Created Events', render: () => <Tab.Pane>
@@ -75,7 +66,6 @@ render() {
         </Tab.Pane> }
     ]
       
-    // console.log(this.props.user)
     return (
       <>
 

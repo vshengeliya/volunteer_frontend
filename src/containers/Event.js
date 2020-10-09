@@ -54,7 +54,6 @@ class Event extends React.Component {
                         token: token})
                 })
         }
-        console.log("componentDidMount")
     }
     
     volunteerClickHandler=(obj)=>{

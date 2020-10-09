@@ -12,13 +12,11 @@ class MyCreatedEvents extends React.Component {
         return this.props.user.events.map ((event)=> 
         <EventCardD event={event}
         deleteEventClickHandler={this.props.deleteEventClickHandler}
-        //    volunteerClickHandler={this.props.volunteerClickHandler}
         />)
     }
         
     render() {
-
-        
+    
     return (
      <>
      {this.props.formToggle === true ? <CreateEventForm submitFormHandler={this.props.submitFormHandler}/>:

@@ -12,13 +12,10 @@ class SearchForm extends React.Component {
        <div className="container-1">
          
           <input type="search" id="search" placeholder={'search by name'} value={this.props.searchNameValue} onChange={this.props.searchByNameHandler}/>
-
-        <input type="search" id="search" placeholder={'search by city'} value={this.props.searchCityValue} onChange={this.props.searchByCityHandler}/>
+          <input type="search" id="search" placeholder={'search by city'} value={this.props.searchCityValue} onChange={this.props.searchByCityHandler}/>
       
        </div>
         </form>
-       
-     <h3></h3>
      </>
     )
   }
