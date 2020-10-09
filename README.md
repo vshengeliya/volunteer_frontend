@@ -8,4 +8,8 @@ This App was built with:
  - React Javascript for frontend;
  - Semantic UI for React for styling
 
+To run the App:
+ - run `npm install`
+ - run `npm start`
+
 Created by Veronika Dodda
