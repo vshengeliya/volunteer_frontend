@@ -28,4 +28,4 @@ To run the App:
 
 Created by Veronika Dodda
 
-Check the Demo: https://studio.youtube.com/video/Su-lPvynOsk/edit/basic
+Check the Demo: https://youtu.be/Su-lPvynOsk
