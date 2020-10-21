@@ -17,7 +17,7 @@ As a user:
  - I can see comments of the event / add a new comment.
 
 This App was built with:
- - Ruby on Rails for backend (`https://github.com/vshengeliya/volunteer_backend`)
+ - Ruby on Rails for [backend] (https://github.com/vshengeliya/volunteer_backend)
  - React Javascript for frontend
  - Semantic UI for React for styling
 
