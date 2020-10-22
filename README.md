@@ -26,6 +26,6 @@ To run the App:
  - run `npm install`
  - run `npm start`
 
-Created by Veronika Dodda
+Created by [Veronika Dodda](https://github.com/vshengeliya)
 
 [See Demo](https://youtu.be/Su-lPvynOsk)
