@@ -25,7 +25,9 @@ To run the App:
  - cd into the folder volunteer_frontend
  - run `npm install`
  - run `npm start`
+ 
+ Enjoy the experience! [See Demo](https://youtu.be/Su-lPvynOsk)
 
 Created by [Veronika Dodda](https://github.com/vshengeliya)
 
-[See Demo](https://youtu.be/Su-lPvynOsk)
+
