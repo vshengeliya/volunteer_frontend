@@ -40,7 +40,6 @@ class MyVolunteerEvents extends React.Component {
       .then(data=>
             {
                this.setState({attendances:data}, ()=> {
-                   console.log("", this.state)
                  let thisEventInAttendances=this.state.attendances.filter(att=> att.event_id===obj.event.id) 
                  let attendanceIdArray = thisEventInAttendances.map((id)=>id.id)
                  let attendanceId = attendanceIdArray[0]
@@ -67,13 +66,10 @@ class MyVolunteerEvents extends React.Component {
        return this.state.myVolunteerEvents.map ((event)=> 
        <EventCardD event={event}
        deleteEventClickHandler={this.deleteEventClickHandler}
-      //  volunteerButtonToggle={this.props.volunteerButtonToggle}
        />)
     }
 
-    render() {
-
-        
+    render() {   
     return (
         <>
            <Grid>
