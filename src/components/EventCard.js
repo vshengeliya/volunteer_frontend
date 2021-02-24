@@ -4,7 +4,6 @@ import {NavLink} from 'react-router-dom'
 
 function EventCard(props) {
 
-  //extra logic on the button
   
   return (
     
@@ -47,16 +46,3 @@ function EventCard(props) {
 }
 
 export default EventCard;
-
-// console.log("user", props.user)
-
-//   let myEventsId = props.user.my_attendances.map((event)=>event.id)
-//   let check = myEventsId.includes(props.event.id)
-
-// <Card.Content extra>
-//            { check=== true?<Button>
-//              Volunteerd
-//            </Button> : <Button primary onClick={()=>props.volunteerClickHandler(props)}>
-//              Volunteer
-//            </Button> }
-// </Card.Content>
